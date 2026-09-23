@@ -19,3 +19,6 @@ build/
 
 # Environment
 .env
+
+# Material del curso (U-tad): solo en local, no se redistribuye
+temario/

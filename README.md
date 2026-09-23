@@ -1,36 +1,53 @@
 # Web Cliente
 
-Repositorio de prácticas y ejercicios de la asignatura **Web Cliente**.
+Repositorio de prácticas de la asignatura **Web Development I, the Client** (U-tad, 2026–2027).
 
 ## Estructura del repositorio
 
 ```
 Web-cliente/
-├── mision-01/          # Prácticas entregables, una carpeta por misión
-├── ejercicios/          # Ejercicios propuestos durante las clases de teoría
+├── ejercicios/            # Ejercicios propuestos de los apuntes, por tema
 │   └── tema-01/
-└── temario/              # Apuntes y material del temario, por tema
-    └── tema-01/
+├── cuaderno/              # Cuaderno de ejercicios de cada unidad
+│   └── tema-01/
+│       ├── nivel-1/       # Calentamientos
+│       ├── misiones/      # Misiones de clase
+│       └── reto-jefe/     # Reto jefe
+└── arena/                 # Entregas evaluables (WebI Arena)
+    └── mision-01/
 ```
 
-## Misiones
+## Arena (entregas)
 
-| Misión | Descripción | Estado |
+| Misión | Nombre | Estado |
 |---|---|---|
-| [mision-01](mision-01) | _Pendiente_ | Pendiente |
+| [mision-01](arena/mision-01) | El Despertar del DOM | Pendiente |
 
-## Ejercicios
+## Unidad 1 — Introducción a JavaScript y al cliente web
 
-| Tema | Descripción | Estado |
+### Ejercicios propuestos (apuntes)
+
+| Ejercicio | Descripción | Estado |
 |---|---|---|
-| [tema-01](ejercicios/tema-01) | _Pendiente_ | Pendiente |
+| [01](ejercicios/tema-01/ejercicio-01) | Hola consola | Completado |
+| [02](ejercicios/tema-01/ejercicio-02) | Tipos y `typeof` | Completado |
+| [03](ejercicios/tema-01/ejercicio-03) | Par o impar | Completado |
+| [04](ejercicios/tema-01/ejercicio-04) | Conversor de temperatura | En curso |
+| [05](ejercicios/tema-01/ejercicio-05) | Clasificador de notas | En curso |
 
-## Temario
+### Cuaderno 1
 
-| Tema | Descripción |
-|---|---|
-| [tema-01](temario/tema-01) | _Pendiente_ |
+| Nivel | Ejercicio | Estado |
+|---|---|---|
+| Nivel 1 | 1.1 El detector de sorpresas | Pendiente |
+| Nivel 1 | 1.2 La máquina de entradas | Pendiente |
+| Nivel 1 | 1.3 El precio justo | Pendiente |
+| Nivel 1 | 1.4 Cuenta atrás de lanzamiento | Pendiente |
+| Misión | 1 · El oráculo de los números | Pendiente |
+| Misión | 2 · La forja de claves | Pendiente |
+| Misión | 3 · La tarjeta holográfica | Pendiente |
+| Reto jefe | Caza al bug | Pendiente |
 
-## Autor
+## Tecnologías
 
-Repositorio de prácticas personal para la asignatura Web Cliente.
+HTML, CSS y JavaScript puro (sin frameworks ni librerías).
