@@ -47,14 +47,14 @@ Web-cliente/
 
 | Nivel | Ejercicio | Estado |
 |---|---|---|
-| Nivel 1 | 1.1 El detector de sorpresas | Pendiente |
-| Nivel 1 | 1.2 La máquina de entradas | Pendiente |
-| Nivel 1 | 1.3 El precio justo | Pendiente |
-| Nivel 1 | 1.4 Cuenta atrás de lanzamiento | Pendiente |
-| Misión | 1 · El oráculo de los números | Pendiente |
-| Misión | 2 · La forja de claves | Pendiente |
-| Misión | 3 · La tarjeta holográfica | Pendiente |
-| Reto jefe | Caza al bug | Pendiente |
+| Nivel 1 | [1.1 El detector de sorpresas](cuaderno/tema-01/nivel-1/1-1-detector-sorpresas) | Pendiente |
+| Nivel 1 | [1.2 La máquina de entradas](cuaderno/tema-01/nivel-1/1-2-maquina-entradas) | Pendiente |
+| Nivel 1 | [1.3 El precio justo](cuaderno/tema-01/nivel-1/1-3-precio-justo) | Pendiente |
+| Nivel 1 | [1.4 Cuenta atrás de lanzamiento](cuaderno/tema-01/nivel-1/1-4-cuenta-atras) | Pendiente |
+| Misión | [1 · El oráculo de los números](cuaderno/tema-01/misiones/mision-1-oraculo) | Pendiente |
+| Misión | [2 · La forja de claves](cuaderno/tema-01/misiones/mision-2-forja-claves) | Pendiente |
+| Misión | [3 · La tarjeta holográfica](cuaderno/tema-01/misiones/mision-3-tarjeta-holografica) | Pendiente |
+| Reto jefe | [Caza al bug](cuaderno/tema-01/reto-jefe/caza-al-bug) | Pendiente |
 
 ## Tecnologías
 
