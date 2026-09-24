@@ -40,7 +40,7 @@ Web-cliente/
 | [09](ejercicios/tema-01/ejercicio-09) | DOM: cambiar texto | Completado |
 | [10](ejercicios/tema-01/ejercicio-10) | DOM: contador interactivo | Completado |
 | [11](ejercicios/tema-01/ejercicio-11) | Validacion simple | Completado |
-| [12](ejercicios/tema-01/ejercicio-12) | Explora las DevTools | Pendiente |
+| [12](ejercicios/tema-01/ejercicio-12) | Explora las DevTools | Completado |
 | [13](ejercicios/tema-01/ejercicio-13) | Las tres capas | Completado |
 
 ### Cuaderno 1
