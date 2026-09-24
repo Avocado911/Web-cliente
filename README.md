@@ -32,8 +32,16 @@ Web-cliente/
 | [01](ejercicios/tema-01/ejercicio-01) | Hola consola | Completado |
 | [02](ejercicios/tema-01/ejercicio-02) | Tipos y `typeof` | Completado |
 | [03](ejercicios/tema-01/ejercicio-03) | Par o impar | Completado |
-| [04](ejercicios/tema-01/ejercicio-04) | Conversor de temperatura | En curso |
-| [05](ejercicios/tema-01/ejercicio-05) | Clasificador de notas | En curso |
+| [04](ejercicios/tema-01/ejercicio-04) | Conversor de temperatura | Completado |
+| [05](ejercicios/tema-01/ejercicio-05) | Clasificador de notas | Completado |
+| [06](ejercicios/tema-01/ejercicio-06) | FizzBuzz | Completado |
+| [07](ejercicios/tema-01/ejercicio-07) | Saludo configurable | Completado |
+| [08](ejercicios/tema-01/ejercicio-08) | Contador con closure | Completado |
+| [09](ejercicios/tema-01/ejercicio-09) | DOM: cambiar texto | Completado |
+| [10](ejercicios/tema-01/ejercicio-10) | DOM: contador interactivo | Completado |
+| [11](ejercicios/tema-01/ejercicio-11) | Validacion simple | Completado |
+| [12](ejercicios/tema-01/ejercicio-12) | Explora las DevTools | Pendiente |
+| [13](ejercicios/tema-01/ejercicio-13) | Las tres capas | Completado |
 
 ### Cuaderno 1
 

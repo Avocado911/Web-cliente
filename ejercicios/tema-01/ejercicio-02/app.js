@@ -13,8 +13,8 @@ console.log(boleeean, typeof boleeean);
 console.log(unde, typeof unde);
 console.log(simbolo, typeof simbolo);
 
-// typeof null es "object": es un bug histórico de JS desde 1995 que nunca
-// se corrigió por compatibilidad hacia atrás.
+// typeof null es "object": es un bug historico de JS desde 1995 que nunca
+// se corrigio por compatibilidad hacia atras.
 
 console.log(nulo, typeof nulo);
 

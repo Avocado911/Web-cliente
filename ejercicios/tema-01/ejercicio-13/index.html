@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ejercicio13-LasTresCapas</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<main>
+		<h1>Ejercicio 13 - Las tres capas de un boton "Me gusta"</h1>
+
+		<p class="enunciado">
+			Describe, para un boton "Me gusta" de una red social, que parte corresponde a HTML,
+			cual a CSS y cual a JavaScript. Explica que seguiria funcionando si JavaScript
+			estuviera desactivado (mejora progresiva).
+		</p>
+
+		<section>
+			<h2>1. HTML: la estructura</h2>
+			<p>
+				HTML define <strong>que es</strong> el boton y que contiene: el propio boton,
+				su texto y el contador de "me gusta".
+			</p>
+			<pre><code>&lt;form method="post" action="/publicaciones/42/me-gusta"&gt;
+	&lt;button type="submit" id="me-gusta" aria-pressed="false"&gt;
+		Me gusta &lt;span id="contador"&gt;128&lt;/span&gt;
+	&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+			<ul>
+				<li>Se usa un <code>&lt;button&gt;</code> y no un <code>&lt;div&gt;</code>: es accesible por teclado y los lectores de pantalla lo anuncian como boton.</li>
+				<li><code>aria-pressed</code> indica si esta marcado o no (es un boton de dos estados).</li>
+				<li>El <code>&lt;form&gt;</code> es lo que permite que funcione sin JavaScript (ver punto 4).</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>2. CSS: la presentacion</h2>
+			<p>
+				CSS define <strong>como se ve</strong>: colores, forma, tamano y los distintos estados visuales.
+			</p>
+			<pre><code>#me-gusta {
+	border: 1px solid gray;
+	border-radius: 999px;
+	color: gray;
+}
+
+#me-gusta:hover {
+	background-color: lightgray;
+}
+
+#me-gusta.activo {
+	color: crimson;
+	border-color: crimson;
+}</code></pre>
+			<ul>
+				<li>Aspecto normal del boton (gris, redondeado).</li>
+				<li><code>:hover</code> y <code>:focus-visible</code>: respuesta visual al pasar el raton o al llegar con el tabulador.</li>
+				<li>La clase <code>.activo</code>: como se ve cuando ya le has dado "me gusta" (en rojo). CSS define el estilo, pero no decide cuando se aplica.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>3. JavaScript: el comportamiento</h2>
+			<p>
+				JavaScript define <strong>que pasa al pulsarlo</strong>, sin recargar la pagina.
+			</p>
+			<pre><code>const boton = document.querySelector("#me-gusta");
+const contador = document.querySelector("#contador");
+let meGustas = 128;
+let activo = false;
+
+boton.addEventListener("click", (event) => {
+	event.preventDefault();
+	activo = !activo;
+	meGustas = activo ? meGustas + 1 : meGustas - 1;
+
+	boton.classList.toggle("activo", activo);
+	boton.setAttribute("aria-pressed", activo);
+	contador.textContent = meGustas;
+	// Aqui se avisaria al servidor con fetch (Unidad 4)
+});</code></pre>
+			<ul>
+				<li>Escucha el evento <code>click</code> con <code>addEventListener</code>.</li>
+				<li><code>preventDefault()</code> evita que el formulario se envie y recargue la pagina.</li>
+				<li>Cambia el estado (activo o no), actualiza el contador con <code>textContent</code> y pone o quita la clase <code>.activo</code> con <code>classList</code>.</li>
+				<li>Avisa al servidor en segundo plano para que el "me gusta" quede guardado.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>4. Sin JavaScript: mejora progresiva</h2>
+			<p>
+				Si JavaScript esta desactivado, <strong>el boton sigue viendose y sigue funcionando</strong>,
+				aunque de forma mas basica:
+			</p>
+			<ul>
+				<li><strong>HTML</strong> sigue ahi: el boton se muestra con su texto y su contador.</li>
+				<li><strong>CSS</strong> sigue ahi: el boton tiene su aspecto y su efecto <code>:hover</code>.</li>
+				<li>Al pulsarlo, como esta dentro de un <code>&lt;form method="post"&gt;</code>, el navegador envia el formulario al servidor por su cuenta. El servidor guarda el "me gusta" y devuelve la pagina actualizada.</li>
+				<li>Lo que se pierde es lo que aporta JavaScript: la pagina se recarga entera, no hay respuesta instantanea y el contador no cambia al momento.</li>
+			</ul>
+			<p>
+				Esa es la idea de la mejora progresiva: la pagina es usable solo con HTML y CSS,
+				y JavaScript <strong>anade</strong> una experiencia mejor encima. Si el boton fuera
+				un <code>&lt;div&gt;</code> sin formulario, sin JavaScript no haria absolutamente nada.
+			</p>
+		</section>
+
+		<section>
+			<h2>Resumen</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Capa</th>
+						<th>Tecnologia</th>
+						<th>En el boton "Me gusta"</th>
+						<th>Sin JavaScript</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Estructura</td>
+						<td>HTML</td>
+						<td>El boton, su texto y el contador</td>
+						<td>Funciona</td>
+					</tr>
+					<tr>
+						<td>Presentacion</td>
+						<td>CSS</td>
+						<td>Colores, forma, hover y estado activo</td>
+						<td>Funciona</td>
+					</tr>
+					<tr>
+						<td>Comportamiento</td>
+						<td>JavaScript</td>
+						<td>Alternar sin recargar, actualizar contador, avisar al servidor</td>
+						<td>Se sustituye por el envio del formulario con recarga</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+
+</html>
