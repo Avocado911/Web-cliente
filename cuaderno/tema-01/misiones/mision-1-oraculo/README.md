@@ -25,12 +25,12 @@ console.log("(psst... el secreto es", secreto, ")");
 
 ## Criterios de aceptacion
 
-- [ ] El script se carga con `defer` y no hay errores en consola.
-- [ ] Vacio o fuera de rango: aviso y no incrementa intentos.
-- [ ] Pistas mayor/menor correctas en todos los casos.
-- [ ] El contador se actualiza en cada consulta valida.
-- [ ] Al acertar: mensaje con los intentos y boton desactivado.
-- [ ] Ningun `console.log` con el secreto en la version final.
+- [x] El script se carga con `defer` y no hay errores en consola.
+- [x] Vacio o fuera de rango: aviso y no incrementa intentos.
+- [x] Pistas mayor/menor correctas en todos los casos.
+- [x] El contador se actualiza en cada consulta valida.
+- [x] Al acertar: mensaje con los intentos y boton desactivado.
+- [x] Ningun `console.log` con el secreto en la version final.
 
 ## Retos extra
 

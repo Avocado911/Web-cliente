@@ -10,7 +10,17 @@
 </head>
 
 <body>
+	<main>
+		<h1>El oraculo de los numeros</h1>
+		<p>El oraculo ha elegido un numero del 1 al 100. ¿Eres capaz de adivinarlo?</p>
 
+		<label for="numero">Introduce el numero:</label>
+		<input type="number" id="numero" min="1" max="100">
+		<button id="consultar">Consultar al oraculo</button>
+
+		<p id="respuesta" aria-live="polite"></p>
+		<p>Intentos: <span id="intentos">0</span></p>
+	</main>
 </body>
 
 </html>
