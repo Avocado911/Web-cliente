@@ -51,10 +51,48 @@ function ocultarCarta(carta) {
 	carta.textContent = "?";
 }
 
+function limpiarSeleccion() {
+	estado.primera = null;
+	estado.segunda = null;
+	estado.bloqueado = false;
+}
+
+function comprobarPareja() {
+	if (estado.primera.dataset.simbolo === estado.segunda.dataset.simbolo) {
+
+		estado.primera.classList.add("emparejada");
+		estado.segunda.classList.add("emparejada");
+		estado.primera.disabled = true;
+		estado.segunda.disabled = true;
+		estado.parejas++;
+		limpiarSeleccion();
+
+	} else {
+		estado.bloqueado = true;
+		setTimeout(() => {
+			ocultarCarta(estado.primera);
+			ocultarCarta(estado.segunda);
+			limpiarSeleccion();
+		}, 900);
+	}
+
+}
+
+
+
+
+
 tablero.addEventListener("click", (event) => {
 	const carta = event.target.closest(".carta");
-	if (!carta) return;
+	if (!carta || carta.classList.contains("girada") || estado.bloqueado) return;
 	girarCarta(carta);
+	if (!estado.primera) {
+		estado.primera = carta;
+		return;
+	}
+	estado.segunda = carta;
+	estado.movimientos++;
+	comprobarPareja();
 });
 
 
