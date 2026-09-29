@@ -96,8 +96,6 @@ function nuevaPartida() {
 	repartirCartas();
 }
 
-
-
 botonReiniciar.addEventListener("click", nuevaPartida);
 
 document.addEventListener("keydown", (event) => {
@@ -105,9 +103,6 @@ document.addEventListener("keydown", (event) => {
 		document.body.classList.toggle("modo-noche");
 	}
 });
-
-
-
 
 tablero.addEventListener("click", (event) => {
 	const carta = event.target.closest(".carta");
@@ -122,7 +117,5 @@ tablero.addEventListener("click", (event) => {
 	comprobarPareja();
 	actualizarMarcador();
 });
-
-
 
 nuevaPartida();
