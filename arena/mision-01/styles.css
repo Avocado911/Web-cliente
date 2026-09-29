@@ -1,0 +1,117 @@
+/* Colores del tema: si se cambian aqui, cambia toda la pagina */
+:root {
+	--fondo: #1a1026;
+	--fondo-claro: #2d1b4e;
+	--texto: #ece6f7;
+	--texto-suave: #b9a8d6;
+	--acento: #b388ff;
+	--acento-fuerte: #7c4dff;
+	--carta: #3b2266;
+	--carta-girada: #f3ecff;
+	--dorado: #f5d27a;
+}
+
+/* Modo noche: la clase la pone el JS en el body y solo cambia los colores */
+body.modo-noche {
+	--fondo: #05030a;
+	--fondo-claro: #120a22;
+	--texto: #d9ccf2;
+	--texto-suave: #8f7bb3;
+	--carta: #1e1036;
+	--carta-girada: #cbb8f0;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: 16px;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+	color: var(--texto);
+	background: radial-gradient(circle at top, var(--fondo-claro), var(--fondo) 70%);
+	transition: background 0.5s, color 0.5s;
+}
+
+.juego {
+	max-width: 480px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+h1 {
+	margin-bottom: 4px;
+	text-shadow: 0 0 16px var(--acento-fuerte);
+}
+
+.subtitulo {
+	margin-top: 0;
+	color: var(--texto-suave);
+}
+
+.marcador {
+	display: flex;
+	justify-content: space-around;
+	margin: 16px 0;
+	border: 1px solid var(--acento-fuerte);
+	border-radius: 12px;
+}
+
+.marcador span {
+	font-weight: bold;
+	color: var(--acento);
+}
+
+/* Tablero: 4 columnas iguales */
+.tablero {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+
+/* Carta tapada */
+.carta {
+	aspect-ratio: 1;
+	font-size: 2rem;
+	color: var(--acento);
+	background: var(--carta);
+	border: 1px solid var(--acento-fuerte);
+	border-radius: 12px;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.carta:hover {
+	box-shadow: 0 0 14px var(--acento-fuerte);
+}
+
+/* Carta boca arriba */
+.carta.girada {
+	background: var(--carta-girada);
+	transform: scale(1.05);
+}
+
+/* Pareja encontrada */
+.carta.emparejada {
+	box-shadow: 0 0 16px var(--dorado);
+	cursor: default;
+}
+
+.mensaje {
+	min-height: 1.5em;
+	font-size: 1.1rem;
+	color: var(--dorado);
+}
+
+.boton {
+	padding: 10px 22px;
+	font: inherit;
+	color: var(--texto);
+	background: var(--acento-fuerte);
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.boton:hover {
+	box-shadow: 0 0 14px var(--acento);
+}
