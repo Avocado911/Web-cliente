@@ -40,3 +40,23 @@ function repartirCartas() {
 		tablero.append(crearCarta(simbolo));
 	}
 }
+
+function girarCarta(carta) {
+	carta.textContent = carta.dataset.simbolo;
+	carta.classList.add("girada");
+}
+
+function ocultarCarta(carta) {
+	carta.classList.remove("girada");
+	carta.textContent = "?";
+}
+
+tablero.addEventListener("click", (event) => {
+	const carta = event.target.closest(".carta");
+	if (!carta) return;
+	girarCarta(carta);
+});
+
+
+
+repartirCartas();
