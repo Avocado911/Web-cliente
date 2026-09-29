@@ -66,7 +66,8 @@ function comprobarPareja() {
 		estado.segunda.disabled = true;
 		estado.parejas++;
 		limpiarSeleccion();
-
+		actualizarMarcador();
+		if (estado.parejas === SIMBOLOS.length) finalPartida();
 	} else {
 		estado.bloqueado = true;
 		setTimeout(() => {
@@ -75,9 +76,29 @@ function comprobarPareja() {
 			limpiarSeleccion();
 		}, 900);
 	}
-
 }
 
+function actualizarMarcador() {
+	marcadorMovimientos.textContent = estado.movimientos;
+	marcadorParejas.textContent = estado.parejas;
+}
+
+function finalPartida() {
+	mensaje.textContent = `Enhorabuena has encontrado todas las parejas, lo has hecho en ${estado.movimientos} movimientos`;
+}
+
+function nuevaPartida() {
+	estado.movimientos = 0;
+	estado.parejas = 0;
+	mensaje.textContent = "";
+	limpiarSeleccion();
+	actualizarMarcador();
+	repartirCartas();
+}
+
+
+
+botonReiniciar.addEventListener("click", nuevaPartida);
 
 
 
@@ -93,8 +114,9 @@ tablero.addEventListener("click", (event) => {
 	estado.segunda = carta;
 	estado.movimientos++;
 	comprobarPareja();
+	actualizarMarcador();
 });
 
 
 
-repartirCartas();
+nuevaPartida();
