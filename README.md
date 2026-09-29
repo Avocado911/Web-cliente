@@ -21,7 +21,7 @@ Web-cliente/
 
 | Misión | Nombre | Estado |
 |---|---|---|
-| [mision-01](arena/mision-01) | El Despertar del DOM | Pendiente |
+| [mision-01](arena/mision-01) | El Despertar del DOM: Memoria Arcana | Completado |
 
 ## Unidad 1 — Introducción a JavaScript y al cliente web
 
