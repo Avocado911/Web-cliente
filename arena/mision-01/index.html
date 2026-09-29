@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Memoria Arcana</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+
+<body>
+	<main class="juego">
+		<h1>🔮 Memoria Arcana</h1>
+		<p class="subtitulo">Encuentra las parejas de simbolos antes de que el oraculo se canse.</p>
+
+		<section class="marcador">
+			<p>Movimientos: <span id="movimientos">0</span></p>
+			<p>Parejas: <span id="parejas">0</span> / 8</p>
+		</section>
+
+		<section id="tablero" class="tablero"></section>
+
+		<p id="mensaje" class="mensaje" aria-live="polite"></p>
+
+		<button id="reiniciar" class="boton">Barajar de nuevo</button>
+	</main>
+</body>
+
+</html>
