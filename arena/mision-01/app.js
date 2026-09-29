@@ -100,6 +100,12 @@ function nuevaPartida() {
 
 botonReiniciar.addEventListener("click", nuevaPartida);
 
+document.addEventListener("keydown", (event) => {
+	if (event.key === "-") {
+		document.body.classList.toggle("modo-noche");
+	}
+});
+
 
 
 
