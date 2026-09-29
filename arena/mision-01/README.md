@@ -33,9 +33,25 @@ Juego de memoria de parejas con estetica mistica en tonos morados: 16 cartas boc
 - **Elementos seleccionados una sola vez al inicio** y guardados en constantes.
 - Sin `var`, sin handlers inline y con HTML, CSS y JS en archivos separados.
 
-## Limitacion conocida
+## Autopsia
+
+### Que fallo durante el desarrollo y como se arreglo
+
+- **Declaracion de la funcion mal escrita:** escribi `const crearCarta(simbolo) { ... }`, mezclando la declaracion clasica con la arrow function. Era un error de sintaxis que impedia ejecutar todo el archivo. Lo cambie por `function crearCarta(simbolo) { ... }`.
+- **El punto en `classList.add(".carta")`:** anadia una clase llamada literalmente `.carta` y el CSS no la reconocia. El punto solo va en los selectores; en `classList` va el nombre sin punto.
+- **El simbolo al reves en `girarCarta`:** escribi `carta.dataset.simbolo = simbolo`, que intentaba guardar una variable que no existia (`ReferenceError`). Lo correcto era leer lo guardado y mostrarlo: `carta.textContent = carta.dataset.simbolo`.
+- **Un `||` dentro del parentesis de `contains`:** `contains("girada" || estado.bloqueado)` nunca comprobaba el bloqueo, porque `"girada" || ...` siempre vale `"girada"`. Separe las condiciones: `contains("girada") || estado.bloqueado`.
+- **`limpiarSeleccion()` fuera del `setTimeout`:** se ejecutaba al instante, antes de tapar las cartas, asi que al cumplirse los 900 ms `estado.primera` ya era `null` y daba error. Aprendi que `setTimeout` no espera: el codigo de despues se ejecuta antes. La movi dentro de la funcion del `setTimeout`.
+
+### Limitacion conocida
 
 Si se pulsa "Barajar de nuevo" justo en los 900 ms en que se ven dos cartas que no coinciden, el `setTimeout` que las tapa sigue programado y, al ejecutarse, da un error en consola porque esas cartas ya no existen. Se arreglaria guardando el identificador que devuelve `setTimeout` y cancelandolo con `clearTimeout` al empezar una partida nueva.
+
+### Que haria distinto
+
+- Cancelar los temporizadores pendientes al reiniciar (la limitacion de arriba).
+- Probar los casos raros (doble clic, reiniciar a mitad de jugada) antes de dar cada paso por terminado.
+- Anadir un cronometro y un record de la sesion.
 
 ## Estructura
 
@@ -64,7 +80,7 @@ He usado Claude (Anthropic), a traves de Claude Code, como asistente.
 ### Que he cambiado
 
 - Escribi `crearCarta`, `barajarCartas`, `repartirCartas`, `girarCarta`, `limpiarSeleccion`, `comprobarPareja`, `actualizarMarcador`, `finalPartida`, `nuevaPartida` y el listener del tablero.
-- Corregi los errores que me senalo en la revision, por ejemplo usar `textContent` como funcion, el punto en `classList.add`, un `||` dentro del parentesis de `contains` o una llamada fuera del `setTimeout` que se ejecutaba antes de tiempo.
+- Corregi los errores que me senalo en la revision (detallados en la Autopsia).
 - La tecla secreta la elegi yo (`-`).
 
 ### Que entiendo
