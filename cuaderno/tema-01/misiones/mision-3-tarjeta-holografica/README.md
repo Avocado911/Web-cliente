@@ -18,15 +18,19 @@ Tarjeta de presentacion que reacciona a eventos, cambia de tema y esconde un sec
 
 ## Criterios de aceptacion
 
-- [ ] Brilla al entrar el raton y deja de brillar al salir.
-- [ ] El nombre se actualiza tecla a tecla; vacio -> texto por defecto.
-- [ ] `crearAlternador` usa un closure: el indice no es global.
-- [ ] Dos alternadores con arrays distintos son independientes.
-- [ ] El ciclo de temas es infinito.
-- [ ] La tecla `h` desbloquea el secreto.
+- [x] Brilla al entrar el raton y deja de brillar al salir.
+- [x] El nombre se actualiza tecla a tecla; vacio -> texto por defecto.
+- [x] `crearAlternador` usa un closure: el indice no es global.
+- [x] Dos alternadores con arrays distintos son independientes.
+- [x] El ciclo de temas es infinito.
+- [x] La tecla `h` desbloquea el secreto.
 
 ## Retos extra
 
-- [ ] Contador de visitas holograficas.
-- [ ] `ArrowRight` reutiliza el alternador.
-- [ ] `dblclick` alterna el lema.
+- [x] Contador de visitas holograficas.
+- [x] `ArrowRight` reutiliza el alternador.
+- [x] `dblclick` alterna el lema.
+
+## Uso de IA
+
+Mision resuelta por Claude (Anthropic) a peticion mia, para tenerla de referencia, aunque la mision planteaba la IA solo como companero (pistas y criticas). La he revisado despues.

@@ -1,0 +1,80 @@
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: 16px;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+	color: #eef;
+	background: #0d0d1a;
+}
+
+.pagina {
+	max-width: 420px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.tarjeta {
+	margin: 24px 0;
+	padding: 32px 20px;
+	border-radius: 16px;
+	transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
+}
+
+/* Brillo al pasar el raton: lo pone y lo quita el JS */
+.tarjeta.brillo {
+	transform: scale(1.03);
+	box-shadow: 0 0 28px rgba(160, 220, 255, 0.8);
+}
+
+/* Temas que recorre el alternador */
+.tema-aurora {
+	background: linear-gradient(135deg, #1fa2ff, #12d8fa, #a6ffcb);
+	color: #0d1b2a;
+}
+
+.tema-neon {
+	background: linear-gradient(135deg, #f72585, #7209b7, #3a0ca3);
+}
+
+.tema-ocaso {
+	background: linear-gradient(135deg, #ff7e5f, #feb47b);
+	color: #2b1300;
+}
+
+.lema {
+	font-style: italic;
+}
+
+.visitas {
+	font-size: 0.9rem;
+	opacity: 0.8;
+}
+
+.controles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: center;
+	align-items: center;
+}
+
+.controles input {
+	padding: 6px;
+	font: inherit;
+}
+
+.boton {
+	padding: 8px 18px;
+	font: inherit;
+	color: #eef;
+	background: #3a0ca3;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.pista {
+	color: #888;
+	font-size: 0.85rem;
+}
