@@ -29,7 +29,3 @@ Generador de contrasenas con longitud y materiales configurables (letras, cifras
 - [x] Medidor de temple (debil / aceptable / legendaria) con `classList` (logro "Clave legendaria").
 - [ ] Garantizar un caracter de cada grupo.
 - [ ] Historial de las 3 ultimas claves.
-
-## Uso de IA
-
-Mision resuelta por Claude (Anthropic) a peticion mia, para tenerla de referencia, aunque la mision planteaba la IA solo como companero (pistas y criticas). La he revisado despues.

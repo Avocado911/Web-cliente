@@ -30,7 +30,3 @@ Tarjeta de presentacion que reacciona a eventos, cambia de tema y esconde un sec
 - [x] Contador de visitas holograficas.
 - [x] `ArrowRight` reutiliza el alternador.
 - [x] `dblclick` alterna el lema.
-
-## Uso de IA
-
-Mision resuelta por Claude (Anthropic) a peticion mia, para tenerla de referencia, aunque la mision planteaba la IA solo como companero (pistas y criticas). La he revisado despues.
