@@ -15,3 +15,7 @@ Salida esperada:
  Precio final: 16.5 €
 =============================
 ```
+
+## Uso de IA
+
+Aunque el enunciado lo planteaba sin IA, este ejercicio lo resolvio Claude (Anthropic) a peticion mia, para tenerlo de referencia. Lo he revisado despues.

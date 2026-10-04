@@ -24,3 +24,7 @@ Salida esperada:
 ```
 
 Pista: construye la linea en una variable `` let linea = `${n}...`; `` y ve concatenando condiciones. Par: `n % 2 === 0`.
+
+## Uso de IA
+
+Aunque el enunciado lo planteaba sin IA, este ejercicio lo resolvio Claude (Anthropic) a peticion mia, para tenerlo de referencia. Lo he revisado despues.

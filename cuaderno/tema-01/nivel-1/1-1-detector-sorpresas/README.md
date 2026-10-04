@@ -24,3 +24,9 @@ Formato libre, por ejemplo:
 ```
 "10" + 5 -> predije "105" -> correcto: + con string concatena.
 ```
+
+## Uso de IA
+
+Aunque el enunciado lo planteaba sin IA, este ejercicio lo resolvio Claude (Anthropic) a peticion mia, para tenerlo de referencia. Lo he revisado despues.
+
+Al estar resuelto con IA, en `app.js` no hay predicciones propias: cada expresion lleva su resultado real y por que sale asi.
