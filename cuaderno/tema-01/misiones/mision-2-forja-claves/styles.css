@@ -1,0 +1,74 @@
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: 16px;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+	color: #f3e9dc;
+	background: radial-gradient(circle at top, #3a2414, #140b06 70%);
+}
+
+.forja {
+	max-width: 460px;
+	margin: 0 auto;
+}
+
+h1 {
+	text-shadow: 0 0 14px #ff7a1a;
+}
+
+.subtitulo {
+	color: #c9b29a;
+}
+
+.campo {
+	margin: 12px 0;
+}
+
+input[type="number"] {
+	width: 5em;
+	padding: 4px;
+	font: inherit;
+}
+
+.boton {
+	padding: 10px 22px;
+	font: inherit;
+	color: #140b06;
+	background: #ff9a3c;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.boton:hover {
+	box-shadow: 0 0 14px #ff7a1a;
+}
+
+.clave {
+	min-height: 1.5em;
+	padding: 10px;
+	font-family: ui-monospace, monospace;
+	font-size: 1.2rem;
+	word-break: break-all;
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 8px;
+}
+
+/* Medidor de temple: el JS pone una de estas tres clases */
+.temple.debil {
+	color: #ff6b6b;
+}
+
+.temple.aceptable {
+	color: #ffd166;
+}
+
+.temple.legendaria {
+	color: #7dffb3;
+	text-shadow: 0 0 10px #7dffb3;
+}
+
+.aviso {
+	color: #ff6b6b;
+}

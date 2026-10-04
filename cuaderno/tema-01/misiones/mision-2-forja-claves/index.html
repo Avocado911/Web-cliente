@@ -10,7 +10,31 @@
 </head>
 
 <body>
+	<main class="forja">
+		<h1>🔐 La forja de claves</h1>
+		<p class="subtitulo">Elige los materiales y forja una clave a tu medida.</p>
 
+		<div class="campo">
+			<label for="longitud">Longitud (4-32):</label>
+			<input type="number" id="longitud" min="4" max="32" value="12">
+		</div>
+
+		<div class="campo">
+			<input type="checkbox" id="usar-numeros">
+			<label for="usar-numeros">Incluir numeros</label>
+		</div>
+
+		<div class="campo">
+			<input type="checkbox" id="usar-simbolos">
+			<label for="usar-simbolos">Incluir simbolos</label>
+		</div>
+
+		<button id="forjar" class="boton">Forjar clave</button>
+
+		<p id="clave" class="clave"></p>
+		<p id="temple" class="temple"></p>
+		<p id="aviso" class="aviso" aria-live="polite"></p>
+	</main>
 </body>
 
 </html>

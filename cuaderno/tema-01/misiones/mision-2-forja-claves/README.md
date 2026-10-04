@@ -18,14 +18,18 @@ Generador de contrasenas con longitud y materiales configurables (letras, cifras
 
 ## Criterios de aceptacion
 
-- [ ] `forjarClave` es pura y devuelve siempre un string.
-- [ ] La clave tiene exactamente la longitud pedida.
-- [ ] Sin casillas marcadas, solo letras.
-- [ ] Cada pulsacion genera una clave distinta.
-- [ ] Longitud fuera de rango: aviso y sin clave.
+- [x] `forjarClave` es pura y devuelve siempre un string.
+- [x] La clave tiene exactamente la longitud pedida.
+- [x] Sin casillas marcadas, solo letras.
+- [x] Cada pulsacion genera una clave distinta.
+- [x] Longitud fuera de rango: aviso y sin clave.
 
 ## Retos extra
 
-- [ ] Medidor de temple (debil / aceptable / legendaria) con `classList` (logro "Clave legendaria").
+- [x] Medidor de temple (debil / aceptable / legendaria) con `classList` (logro "Clave legendaria").
 - [ ] Garantizar un caracter de cada grupo.
 - [ ] Historial de las 3 ultimas claves.
+
+## Uso de IA
+
+Mision resuelta por Claude (Anthropic) a peticion mia, para tenerla de referencia, aunque la mision planteaba la IA solo como companero (pistas y criticas). La he revisado despues.
