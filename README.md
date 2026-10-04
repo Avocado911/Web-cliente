@@ -22,6 +22,7 @@ Web-cliente/
 | Misión | Nombre | Estado |
 |---|---|---|
 | [mision-01](arena/mision-01) | El Despertar del DOM: Memoria Arcana | Completado |
+| [mision-02](arena/mision-02) | Async Odyssey | Pendiente |
 
 ## Unidad 1 — Introducción a JavaScript y al cliente web
 
@@ -56,6 +57,26 @@ Web-cliente/
 | Misión | [3 · La tarjeta holográfica](cuaderno/tema-01/misiones/mision-3-tarjeta-holografica) | Completado |
 | Reto jefe | [Caza al bug](cuaderno/tema-01/reto-jefe/caza-al-bug) | Completado |
 
+## Unidad 2 — JavaScript avanzado y herramientas del frontend
+
+### Ejercicios propuestos (apuntes)
+
+Enunciados en [ejercicios/tema-02](ejercicios/tema-02). Pendientes.
+
+### Cuaderno 2
+
+| Nivel | Ejercicio | Estado |
+|---|---|---|
+| Nivel 1 | [1.1 El podio inmutable](cuaderno/tema-02/nivel-1/1-1-podio-inmutable) | Pendiente |
+| Nivel 1 | [1.2 Desempaquetando la API](cuaderno/tema-02/nivel-1/1-2-desempaquetando-api) | Pendiente |
+| Nivel 1 | [1.3 Recuento electoral con Map y Set](cuaderno/tema-02/nivel-1/1-3-recuento-electoral) | Pendiente |
+| Nivel 1 | [1.4 El oráculo del event loop](cuaderno/tema-02/nivel-1/1-4-oraculo-event-loop) | Pendiente |
+| Misión | [1 · Aurora FM](cuaderno/tema-02/misiones/mision-1-aurora-fm) | Pendiente |
+| Misión | [2 · Pokédex de campo](cuaderno/tema-02/misiones/mision-2-pokedex) | Pendiente |
+| Misión | [3 · Operación TypeScript](cuaderno/tema-02/misiones/mision-3-operacion-typescript) | Pendiente |
+| Reto jefe | [Atlas multiverso](cuaderno/tema-02/reto-jefe/atlas-multiverso) | Pendiente |
+
 ## Tecnologías
 
-HTML, CSS y JavaScript puro (sin frameworks ni librerías).
+- Unidad 1: HTML, CSS y JavaScript puro (sin frameworks ni librerías).
+- Unidad 2: JavaScript moderno con módulos ES, npm, Vite y TypeScript.

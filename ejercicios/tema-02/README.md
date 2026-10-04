@@ -1,0 +1,15 @@
+# Ejercicios propuestos · Tema 2
+
+1. **Inmutabilidad basica.** Dado `const notas = [7, 4, 9, 2]`, obten un nuevo array ordenado de mayor a menor sin modificar `notas`. Verifica con `console.log` que el original permanece intacto. (Pista: `toSorted`.)
+2. **Pipeline funcional.** Partiendo del array `productos` del apartado de objetos, escribe una sola expresion encadenada que devuelva los nombres (en mayusculas y ordenados alfabeticamente) de los productos con `stock > 0`.
+3. **Agrupar con `Object.groupBy`.** Dado un array de alumnos `{ nombre, nota }`, agrupalos en `{ aprobados: [...], suspensos: [...] }` segun si la nota es `>= 5`.
+4. **Copia profunda.** Crea un objeto `config` con al menos un objeto anidado. Haz una copia con spread y otra con `structuredClone`. Modifica el objeto anidado en cada copia y explica con `console.log` por que los resultados difieren.
+5. **Closure contador.** Implementa una factory `crearMonedero(saldoInicial)` que devuelva metodos `ingresar(n)`, `retirar(n)` y `consultar()`. El saldo debe ser privado (no accesible directamente desde fuera) y `retirar` no debe permitir saldo negativo (lanza un `Error`).
+6. **Clases y herencia.** Define una clase `Figura` con un metodo `area()` que lance un error ("no implementado"). Crea las subclases `Circulo` y `Rectangulo` que sobreescriban `area()`. Crea un array de figuras y muestra el area total con `reduce`.
+7. **`Map` y `Set`.** A partir de un array de palabras, usa un `Map` para contar cuantas veces aparece cada una y un `Set` para listar las palabras unicas.
+8. **Asincronia y orden.** Sin ejecutarlo, predice el orden de salida de un codigo que combine `console.log` sincronos, un `setTimeout(..., 0)` y un `Promise.resolve().then(...)`; luego compruebalo. Explica el resultado con el modelo del event loop.
+9. **`fetch` con manejo de errores.** Usando la API publica `https://jsonplaceholder.typicode.com/users`, escribe una funcion async que obtenga los usuarios, compruebe `respuesta.ok`, devuelva un array con sus nombres y maneje los errores devolviendo `[]`.
+10. **Combinadores de promesas.** Crea tres funciones que devuelvan promesas con `setTimeout` de distinta duracion. Compara el comportamiento de `Promise.all`, `Promise.allSettled` y `Promise.race` cuando una de ellas rechaza.
+11. **Preferencias con `localStorage`.** Crea una pagina con un boton que alterne entre tema claro y oscuro (cambiando una clase del `<body>`). Guarda la preferencia en `localStorage` y aplicala automaticamente al recargar. Comprueba el valor guardado en la pestana Application de las DevTools.
+12. **Tu primer proyecto con Vite.** Crea un proyecto con `npm create vite@latest` (variante Vanilla + TypeScript), instala dependencias y arrancalo con `npm run dev`. Identifica el `package.json`, los scripts disponibles y por que `node_modules/` no debe subirse al repositorio.
+13. **De JavaScript a TypeScript.** Toma una funcion JS sencilla (por ejemplo, la del ejercicio 5 sobre el monedero) y anadele tipos: anota parametros, valor de retorno y define una `interface` para el objeto devuelto. Provoca a proposito un error de tipo y observa como lo senala el editor.
