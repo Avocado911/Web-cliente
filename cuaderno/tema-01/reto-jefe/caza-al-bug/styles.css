@@ -1,0 +1,73 @@
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: 16px;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+	color: #e6f4ea;
+	background: radial-gradient(circle at top, #12301f, #07120c 70%);
+}
+
+.juego {
+	max-width: 420px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.marcador span {
+	font-weight: bold;
+	color: #7dffb3;
+}
+
+.boton {
+	padding: 10px 22px;
+	font: inherit;
+	color: #07120c;
+	background: #7dffb3;
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.boton:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+/* Cuadricula de 3 x 3 */
+.tablero {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	margin: 20px 0;
+}
+
+.casilla {
+	aspect-ratio: 1;
+	font-size: 2.4rem;
+	background: #163b27;
+	border: 1px solid #2f6b48;
+	border-radius: 12px;
+	cursor: crosshair;
+}
+
+/* Casilla con bug: la clase la pone y la quita el JS */
+.casilla.bug {
+	background: #24593b;
+}
+
+.casilla.dorado {
+	background: #6b5a12;
+	box-shadow: 0 0 18px #f5d27a;
+}
+
+.mensaje {
+	min-height: 1.5em;
+	font-size: 1.1rem;
+	color: #f5d27a;
+}
+
+.ayuda {
+	color: #8fb39d;
+	font-size: 0.85rem;
+}

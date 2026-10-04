@@ -14,9 +14,9 @@ Un whack-a-mole en vanilla JS: los bugs aparecen y desaparecen en una cuadricula
 
 ## Retos extra
 
-- [ ] Dificultad creciente cada 10 s.
-- [ ] Bug dorado ✨ (5 puntos).
-- [ ] Record de la sesion.
+- [x] Dificultad creciente cada 10 s.
+- [x] Bug dorado ✨ (5 puntos).
+- [x] Record de la sesion.
 
 ## Rubrica de autoevaluacion
 
@@ -29,3 +29,7 @@ Un whack-a-mole en vanilla JS: los bugs aparecen y desaparecen en una cuadricula
 | Comprension | Sabes que hace a grandes rasgos | Explicas cada funcion a un companero | Justificas cada decision |
 
 La fila "Comprension" es la que se examina en la defensa oral de la Arena.
+
+## Uso de IA
+
+El reto permite IA libre si se declara: lo ha resuelto entero Claude (Anthropic) a peticion mia, para tenerlo de referencia. Lo he revisado despues.
