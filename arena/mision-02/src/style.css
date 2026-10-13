@@ -1,14 +1,24 @@
 :root {
-	--fondo: #1a1026;
-	--fondo-claro: #2d1b4e;
-	--panel: rgba(255, 255, 255, 0.06);
-	--borde: rgba(179, 136, 255, 0.3);
-	--texto: #ece6f7;
-	--texto-suave: #b9a8d6;
-	--acento: #b388ff;
-	--acento-fuerte: #7c4dff;
-	--dorado: #f5d27a;
-	--error: #ff8a8a;
+	--madera-oscura: #1f120a;
+	--madera: #3b2416;
+	--madera-media: #5a3720;
+	--madera-clara: #7a4b2a;
+	--laton: #d4a24c;
+	--laton-claro: #e9c27a;
+	--pergamino: #f4e9d3;
+	--pergamino-sombra: #e2d2b0;
+	--tinta: #2e1d10;
+	--tinta-suave: #6b5137;
+	--texto: #f3e6cc;
+	--texto-suave: #d2b98f;
+	--error: #ff9b85;
+	--vetas: repeating-linear-gradient(
+		92deg,
+		rgba(255, 255, 255, 0.025) 0 2px,
+		transparent 2px 11px,
+		rgba(0, 0, 0, 0.06) 11px 13px,
+		transparent 13px 23px
+	);
 }
 
 * {
@@ -19,9 +29,10 @@ body {
 	margin: 0;
 	min-height: 100vh;
 	padding: 16px;
-	font-family: system-ui, sans-serif;
+	font-family: Georgia, "Times New Roman", serif;
 	color: var(--texto);
-	background: radial-gradient(circle at top, var(--fondo-claro), var(--fondo) 70%);
+	background-color: var(--madera-oscura);
+	background-image: var(--vetas), linear-gradient(180deg, var(--madera), var(--madera-oscura));
 	background-attachment: fixed;
 }
 
@@ -36,11 +47,14 @@ body {
 
 .cabecera h1 {
 	margin-bottom: 4px;
-	text-shadow: 0 0 16px var(--acento-fuerte);
+	letter-spacing: 0.04em;
+	color: var(--laton-claro);
+	text-shadow: 0 2px 0 var(--madera-oscura), 0 0 18px rgba(212, 162, 76, 0.35);
 }
 
 .subtitulo {
 	margin-top: 0;
+	font-style: italic;
 	color: var(--texto-suave);
 }
 
@@ -66,29 +80,34 @@ body {
 	min-width: 0;
 	padding: 10px 14px;
 	font: inherit;
-	color: var(--texto);
-	background: var(--panel);
-	border: 1px solid var(--borde);
-	border-radius: 999px;
+	color: var(--tinta);
+	background: var(--pergamino);
+	border: 2px solid var(--madera-clara);
+	border-radius: 6px;
+}
+
+.buscador input::placeholder {
+	color: var(--tinta-suave);
 }
 
 .buscador input:focus-visible {
-	outline: 2px solid var(--acento);
+	outline: 2px solid var(--laton);
 }
 
 .boton {
 	padding: 10px 22px;
 	font: inherit;
-	color: var(--texto);
-	background: var(--acento-fuerte);
-	border: none;
-	border-radius: 999px;
+	font-weight: bold;
+	color: var(--tinta);
+	background: linear-gradient(180deg, var(--laton-claro), var(--laton));
+	border: 1px solid #8a6424;
+	border-radius: 6px;
 	cursor: pointer;
 }
 
 .boton:hover,
 .boton:focus-visible {
-	box-shadow: 0 0 14px var(--acento);
+	box-shadow: 0 0 12px rgba(233, 194, 122, 0.6);
 	outline: none;
 }
 
@@ -104,9 +123,13 @@ body {
 	padding: 4px 8px;
 	font: inherit;
 	color: var(--texto);
-	background: var(--fondo-claro);
-	border: 1px solid var(--borde);
-	border-radius: 6px;
+	background: var(--madera-media);
+	border: 1px solid var(--madera-clara);
+	border-radius: 4px;
+}
+
+.controles input[type="checkbox"] {
+	accent-color: var(--laton);
 }
 
 /* Mensaje de estado: el JS cambia data-tipo segun haya carga, error, vacio... */
@@ -114,10 +137,12 @@ body {
 	min-height: 1.5em;
 	margin: 20px 0;
 	text-align: center;
+	font-style: italic;
 	color: var(--texto-suave);
 }
 
 .mensaje[data-tipo="error"] {
+	font-style: normal;
 	color: var(--error);
 }
 
@@ -128,7 +153,7 @@ body {
 	height: 0.9em;
 	margin-right: 8px;
 	vertical-align: -2px;
-	border: 2px solid var(--acento);
+	border: 2px solid var(--laton);
 	border-top-color: transparent;
 	border-radius: 50%;
 	animation: girar 0.8s linear infinite;
@@ -150,24 +175,27 @@ body {
 .resultados {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-	gap: 14px;
+	gap: 16px;
 }
 
+/* Ficha de libro: papel claro sobre la madera */
 .libro {
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
-	background: var(--panel);
-	border: 1px solid var(--borde);
-	border-radius: 12px;
+	color: var(--tinta);
+	background: linear-gradient(180deg, var(--pergamino), var(--pergamino-sombra));
+	border-radius: 4px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
 }
 
 .portada {
 	width: 100%;
 	aspect-ratio: 2 / 3;
 	object-fit: cover;
-	border-radius: 8px;
-	background: var(--fondo-claro);
+	border-radius: 2px;
+	background: var(--madera-media);
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .sin-portada {
@@ -188,19 +216,24 @@ body {
 	color: var(--texto-suave);
 }
 
+.libro .autores,
+.libro .detalles {
+	color: var(--tinta-suave);
+}
+
 .boton-favorito {
 	align-self: flex-end;
 	margin-top: auto;
 	font-size: 1.4rem;
-	color: var(--texto-suave);
+	color: var(--tinta-suave);
 	background: none;
 	border: none;
 	cursor: pointer;
 }
 
 .boton-favorito[aria-pressed="true"] {
-	color: var(--dorado);
-	text-shadow: 0 0 10px var(--dorado);
+	color: #b8860b;
+	text-shadow: 0 0 6px rgba(184, 134, 11, 0.6);
 }
 
 .panel {
@@ -209,16 +242,20 @@ body {
 	gap: 16px;
 }
 
+/* Paneles laterales: madera clara con un tablon mas oscuro debajo, como un estante */
 .tarjeta-panel {
-	padding: 14px;
-	background: var(--panel);
-	border: 1px solid var(--borde);
-	border-radius: 12px;
+	padding: 14px 14px 18px;
+	background-color: var(--madera-media);
+	background-image: var(--vetas), linear-gradient(180deg, var(--madera-clara), var(--madera-media));
+	border: 1px solid var(--madera-clara);
+	border-radius: 6px;
+	box-shadow: inset 0 -8px 0 var(--madera), 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .tarjeta-panel h2 {
 	margin: 0 0 10px;
 	font-size: 1.05rem;
+	color: var(--laton-claro);
 }
 
 .lista-estadisticas,
@@ -238,10 +275,14 @@ body {
 	font-size: 0.9rem;
 }
 
+.lista-favoritos li + li {
+	border-top: 1px dashed rgba(243, 230, 204, 0.2);
+}
+
 .barra {
 	height: 6px;
 	margin-top: 2px;
-	background: var(--acento-fuerte);
+	background: linear-gradient(90deg, var(--laton), var(--laton-claro));
 	border-radius: 3px;
 }
 
@@ -257,6 +298,7 @@ body {
 }
 
 .vacio {
+	font-style: italic;
 	color: var(--texto-suave);
 	font-size: 0.9rem;
 }
