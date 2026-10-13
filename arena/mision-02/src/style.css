@@ -1,0 +1,274 @@
+:root {
+	--fondo: #1a1026;
+	--fondo-claro: #2d1b4e;
+	--panel: rgba(255, 255, 255, 0.06);
+	--borde: rgba(179, 136, 255, 0.3);
+	--texto: #ece6f7;
+	--texto-suave: #b9a8d6;
+	--acento: #b388ff;
+	--acento-fuerte: #7c4dff;
+	--dorado: #f5d27a;
+	--error: #ff8a8a;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	padding: 16px;
+	font-family: system-ui, sans-serif;
+	color: var(--texto);
+	background: radial-gradient(circle at top, var(--fondo-claro), var(--fondo) 70%);
+	background-attachment: fixed;
+}
+
+.biblioteca {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.cabecera {
+	text-align: center;
+}
+
+.cabecera h1 {
+	margin-bottom: 4px;
+	text-shadow: 0 0 16px var(--acento-fuerte);
+}
+
+.subtitulo {
+	margin-top: 0;
+	color: var(--texto-suave);
+}
+
+/* Oculta un elemento a la vista pero lo deja para los lectores de pantalla */
+.solo-lectores {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.buscador {
+	display: flex;
+	gap: 8px;
+	max-width: 560px;
+	margin: 20px auto 12px;
+}
+
+.buscador input {
+	flex: 1;
+	min-width: 0;
+	padding: 10px 14px;
+	font: inherit;
+	color: var(--texto);
+	background: var(--panel);
+	border: 1px solid var(--borde);
+	border-radius: 999px;
+}
+
+.buscador input:focus-visible {
+	outline: 2px solid var(--acento);
+}
+
+.boton {
+	padding: 10px 22px;
+	font: inherit;
+	color: var(--texto);
+	background: var(--acento-fuerte);
+	border: none;
+	border-radius: 999px;
+	cursor: pointer;
+}
+
+.boton:hover,
+.boton:focus-visible {
+	box-shadow: 0 0 14px var(--acento);
+	outline: none;
+}
+
+.controles {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px 20px;
+	color: var(--texto-suave);
+}
+
+.controles select {
+	padding: 4px 8px;
+	font: inherit;
+	color: var(--texto);
+	background: var(--fondo-claro);
+	border: 1px solid var(--borde);
+	border-radius: 6px;
+}
+
+/* Mensaje de estado: el JS cambia data-tipo segun haya carga, error, vacio... */
+.mensaje {
+	min-height: 1.5em;
+	margin: 20px 0;
+	text-align: center;
+	color: var(--texto-suave);
+}
+
+.mensaje[data-tipo="error"] {
+	color: var(--error);
+}
+
+.mensaje[data-tipo="cargando"]::before {
+	content: "";
+	display: inline-block;
+	width: 0.9em;
+	height: 0.9em;
+	margin-right: 8px;
+	vertical-align: -2px;
+	border: 2px solid var(--acento);
+	border-top-color: transparent;
+	border-radius: 50%;
+	animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.contenido {
+	display: grid;
+	grid-template-columns: 1fr 280px;
+	gap: 20px;
+	align-items: start;
+}
+
+.resultados {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+	gap: 14px;
+}
+
+.libro {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	background: var(--panel);
+	border: 1px solid var(--borde);
+	border-radius: 12px;
+}
+
+.portada {
+	width: 100%;
+	aspect-ratio: 2 / 3;
+	object-fit: cover;
+	border-radius: 8px;
+	background: var(--fondo-claro);
+}
+
+.sin-portada {
+	display: grid;
+	place-items: center;
+	font-size: 3rem;
+}
+
+.libro h3 {
+	margin: 10px 0 4px;
+	font-size: 1rem;
+}
+
+.autores,
+.detalles {
+	margin: 2px 0;
+	font-size: 0.85rem;
+	color: var(--texto-suave);
+}
+
+.boton-favorito {
+	align-self: flex-end;
+	margin-top: auto;
+	font-size: 1.4rem;
+	color: var(--texto-suave);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.boton-favorito[aria-pressed="true"] {
+	color: var(--dorado);
+	text-shadow: 0 0 10px var(--dorado);
+}
+
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.tarjeta-panel {
+	padding: 14px;
+	background: var(--panel);
+	border: 1px solid var(--borde);
+	border-radius: 12px;
+}
+
+.tarjeta-panel h2 {
+	margin: 0 0 10px;
+	font-size: 1.05rem;
+}
+
+.lista-estadisticas,
+.lista-favoritos {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lista-estadisticas li,
+.lista-favoritos li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 0;
+	font-size: 0.9rem;
+}
+
+.barra {
+	height: 6px;
+	margin-top: 2px;
+	background: var(--acento-fuerte);
+	border-radius: 3px;
+}
+
+.quitar-favorito {
+	color: var(--texto-suave);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.quitar-favorito:hover {
+	color: var(--error);
+}
+
+.vacio {
+	color: var(--texto-suave);
+	font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+	.contenido {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mensaje[data-tipo="cargando"]::before {
+		animation: none;
+	}
+}
