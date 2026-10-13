@@ -1,16 +1,27 @@
 import "./style.css";
 import { buscarLibros, ErrorBiblioteca } from "./api.js";
-import { normalizarLibro, filtrarLibros, ordenarLibros, calcularEstadisticas } from "./datos.js";
+import { normalizarLibro, filtrarLibros, ordenarLibros, calcularEstadisticas, alternarFavorito } from "./datos.js";
+import { leer, guardar } from "./almacen.js";
 import * as ui from "./ui.js";
+
+const CLAVE_FAVORITOS = "biblioteca-arcana-favoritos";
 
 const formulario = document.querySelector("#formulario");
 const campoBusqueda = document.querySelector("#busqueda");
 const selectorOrden = document.querySelector("#orden");
 const casillaEspanol = document.querySelector("#solo-espanol");
 const casillaPortada = document.querySelector("#solo-portada");
+const resultados = document.querySelector("#resultados");
+const listaFavoritos = document.querySelector("#favoritos");
+
+function cargarFavoritos() {
+	const guardados = leer(CLAVE_FAVORITOS, []);
+	return Array.isArray(guardados) ? guardados : [];
+}
 
 const estado = {
 	libros: [],
+	favoritos: cargarFavoritos(),
 	ultimaBusqueda: null,
 	controlador: null,
 };
@@ -29,8 +40,20 @@ function pintarResultados() {
 		: "Ningun libro cumple los filtros elegidos.";
 
 	const visibles = librosVisibles();
-	ui.mostrarLibros(visibles, new Set(), textoSiVacio);
+	const idsFavoritos = new Set(estado.favoritos.map((libro) => libro.id));
+	ui.mostrarLibros(visibles, idsFavoritos, textoSiVacio);
 	ui.mostrarEstadisticas(calcularEstadisticas(visibles));
+}
+
+function cambiarFavorito(id) {
+	const libro = estado.libros.find((l) => l.id === id) ?? estado.favoritos.find((l) => l.id === id);
+	if (!libro) {
+		return;
+	}
+	estado.favoritos = alternarFavorito(estado.favoritos, libro);
+	guardar(CLAVE_FAVORITOS, estado.favoritos);
+	ui.mostrarFavoritos(estado.favoritos);
+	pintarResultados();
 }
 
 async function buscar(texto) {
@@ -67,4 +90,20 @@ for (const control of [selectorOrden, casillaEspanol, casillaPortada]) {
 	control.addEventListener("change", pintarResultados);
 }
 
+// Delegacion: un listener por contenedor sirve para todas las tarjetas, aunque se repinten
+resultados.addEventListener("click", (event) => {
+	const boton = event.target.closest(".boton-favorito");
+	if (boton) {
+		cambiarFavorito(boton.dataset.id);
+	}
+});
+
+listaFavoritos.addEventListener("click", (event) => {
+	const boton = event.target.closest(".quitar-favorito");
+	if (boton) {
+		cambiarFavorito(boton.dataset.id);
+	}
+});
+
+ui.mostrarFavoritos(estado.favoritos);
 ui.mostrarMensaje("Busca un titulo o un autor para explorar la biblioteca.", "inicio");
