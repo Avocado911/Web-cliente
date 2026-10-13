@@ -1,4 +1,4 @@
-// Render: lo unico que toca el DOM. Todo el texto entra con textContent, nunca con innerHTML
+// Render: lo unico que toca el DOM. Todo el texto se inserta con textContent
 
 const mensaje = document.querySelector("#mensaje");
 const resultados = document.querySelector("#resultados");
