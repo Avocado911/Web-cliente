@@ -22,7 +22,7 @@ Web-cliente/
 | Misión | Nombre | Estado |
 |---|---|---|
 | [mision-01](arena/mision-01) | El Despertar del DOM: Memoria Arcana | Completado |
-| [mision-02](arena/mision-02) | Async Odyssey | Pendiente |
+| [mision-02](arena/mision-02) | Async Odyssey: Biblioteca Arcana | Completado |
 
 ## Unidad 1 — Introducción a JavaScript y al cliente web
 
