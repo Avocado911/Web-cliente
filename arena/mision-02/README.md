@@ -81,3 +81,22 @@ JavaScript (modulos ES), Vite, HTML y CSS. Sin frameworks.
 
 ## Uso de IA
 
+Para ser totalmente transparente con el desarrollo de este proyecto, quiero detallar cómo he integrado herramientas de Inteligencia Artificial en mi flujo de trabajo. Básicamente, la he utilizado como un asistente para agilizar tareas repetitivas, pero el núcleo del proyecto es mío.
+
+### 🛠️ ¿En qué me ayudó la IA?
+
+- **Maquetación y Diseño:** Me echó una mano generando la estructura base en HTML y los estilos en CSS, así como con algunas ideas para la interfaz.
+    
+- **Lógica secundaria:** Me dio sugerencias puntuales para estructurar partes menos críticas del código.
+    
+- **Caza de bugs (Debugging):** La utilicé para encontrar errores en el código de forma más rápida cuando me quedaba atascado.
+
+### 👨‍💻 ¿Qué he desarrollado yo? (El core del proyecto)
+
+- **El "cerebro" (JavaScript):** Toda la programación funcional, la lógica principal de la aplicación y la interactividad están hechas a mano por mí.
+    
+- **Arquitectura:** La creación, organización y vinculación de todos los archivos y carpetas que ves en este repositorio.
+    
+- **Solución real de problemas:** Aunque la IA me ayudó a detectar fallos o me sugirió código, **yo mismo analicé, adapté y apliqué cada solución**, asegurándome de que todo encajara perfectamente con la lógica de mi JavaScript.
+
+> **En resumen:** He usado la IA para montar el "cascarón" (HTML/CSS) más rápido y como patito de goma para encontrar errores, pero el motor del proyecto y toda la lógica de programación es 100% trabajo mío.
