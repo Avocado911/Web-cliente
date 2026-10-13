@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<title>Biblioteca Arcana</title>
+	<script type="module" src="/src/main.js"></script>
+</head>
+
+<body>
+	<main class="biblioteca">
+		<header class="cabecera">
+			<h1>📚 Biblioteca Arcana</h1>
+			<p class="subtitulo">Consulta los archivos de OpenLibrary y guarda tus hallazgos en tu estanteria.</p>
+		</header>
+
+		<form id="formulario" class="buscador" role="search">
+			<label for="busqueda" class="solo-lectores">Titulo o autor</label>
+			<input id="busqueda" type="search" placeholder="Titulo o autor..." autocomplete="off">
+			<button type="submit" class="boton">Buscar</button>
+		</form>
+
+		<section class="controles" aria-label="Orden y filtros">
+			<label>
+				Ordenar por
+				<select id="orden">
+					<option value="relevancia">Relevancia</option>
+					<option value="anio-desc">Mas recientes</option>
+					<option value="anio-asc">Mas antiguos</option>
+					<option value="titulo">Titulo (A-Z)</option>
+				</select>
+			</label>
+			<label><input type="checkbox" id="solo-espanol"> Solo en español</label>
+			<label><input type="checkbox" id="solo-portada"> Solo con portada</label>
+		</section>
+
+		<p id="mensaje" class="mensaje" aria-live="polite"></p>
+
+		<div class="contenido">
+			<section id="resultados" class="resultados" aria-label="Resultados de la busqueda"></section>
+
+			<aside class="panel">
+				<section id="estadisticas" class="tarjeta-panel" hidden></section>
+				<section class="tarjeta-panel">
+					<h2>Mi estanteria (<span id="contador-favoritos">0</span>)</h2>
+					<ul id="favoritos" class="lista-favoritos"></ul>
+				</section>
+			</aside>
+		</div>
+	</main>
+</body>
+
+</html>
