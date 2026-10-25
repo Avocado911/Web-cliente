@@ -6,16 +6,18 @@ import ListaLibros from "./componentes/ListaLibros.jsx";
 import Estadisticas from "./componentes/Estadisticas.jsx";
 import Estanteria from "./componentes/Estanteria.jsx";
 import { useBusquedaLibros } from "./hooks/useBusquedaLibros.js";
+import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { filtrarLibros, ordenarLibros, alternarFavorito } from "./logica/datos.js";
 
 const FILTROS_INICIALES = { soloEspanol: false, soloConPortada: false };
+const CLAVE_FAVORITOS = "biblioteca-arcana-favoritos";
 
 export default function App() {
 	// Estado minimo: lo que el usuario ha elegido. Todo lo demas se calcula
 	const [busqueda, setBusqueda] = useState("");
 	const [orden, setOrden] = useState("relevancia");
 	const [filtros, setFiltros] = useState(FILTROS_INICIALES);
-	const [favoritos, setFavoritos] = useState([]);
+	const [favoritos, setFavoritos] = useLocalStorage(CLAVE_FAVORITOS, [], Array.isArray);
 
 	const { estado, libros, error, reintentar } = useBusquedaLibros(busqueda);
 
