@@ -303,6 +303,30 @@ body {
 	font-size: 0.9rem;
 }
 
+/* Piezas nuevas de la version en React */
+
+.barra {
+	display: block;
+}
+
+.hueco-barra {
+	flex: 1;
+}
+
+.aviso {
+	flex-basis: 100%;
+	margin: 6px 0 0;
+	font-size: 0.9rem;
+	color: var(--laton-claro);
+}
+
+.boton-pequeno {
+	margin-left: 12px;
+	padding: 4px 12px;
+	font-size: 0.85rem;
+	font-style: normal;
+}
+
 @media (max-width: 760px) {
 	.contenido {
 		grid-template-columns: 1fr;
