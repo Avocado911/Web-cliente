@@ -1,4 +1,4 @@
-export default function Estanteria({ favoritos, onAlternarFavorito }) {
+export default function Estanteria({ favoritos, onAlternarFavorito, onAbrir }) {
 	const ordenados = favoritos.toSorted((a, b) => a.titulo.localeCompare(b.titulo, "es"));
 
 	return (
@@ -8,7 +8,7 @@ export default function Estanteria({ favoritos, onAlternarFavorito }) {
 				{ordenados.length === 0 && <li className="vacio">Aun no has guardado ningun libro.</li>}
 				{ordenados.map((libro) => (
 					<li key={libro.id}>
-						<span>{libro.titulo}</span>
+						<button type="button" className="abrir-detalle" onClick={() => onAbrir(libro.id)}>{libro.titulo}</button>
 						<button
 							type="button"
 							className="quitar-favorito"

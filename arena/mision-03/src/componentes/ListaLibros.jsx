@@ -1,6 +1,6 @@
 import TarjetaLibro from "./TarjetaLibro.jsx";
 
-export default function ListaLibros({ libros, idsFavoritos, onAlternarFavorito }) {
+export default function ListaLibros({ libros, idsFavoritos, onAlternarFavorito, onAbrir }) {
 	return (
 		<section className="resultados" aria-label="Resultados de la busqueda">
 			{libros.map((libro) => (
@@ -10,6 +10,7 @@ export default function ListaLibros({ libros, idsFavoritos, onAlternarFavorito }
 					libro={libro}
 					marcado={idsFavoritos.has(libro.id)}
 					onAlternarFavorito={onAlternarFavorito}
+					onAbrir={onAbrir}
 				/>
 			))}
 		</section>

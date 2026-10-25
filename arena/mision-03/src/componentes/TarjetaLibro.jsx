@@ -7,11 +7,13 @@ export function textoDetalles(libro) {
 		.join(" · ");
 }
 
-export default function TarjetaLibro({ libro, marcado, onAlternarFavorito }) {
+export default function TarjetaLibro({ libro, marcado, onAlternarFavorito, onAbrir }) {
 	return (
 		<article className="libro">
 			<Portada libro={libro} />
-			<h3>{libro.titulo}</h3>
+			<h3>
+				<button type="button" className="abrir-detalle" onClick={() => onAbrir(libro.id)}>{libro.titulo}</button>
+			</h3>
 			<p className="autores">{libro.autores.join(", ")}</p>
 			<p className="detalles">{textoDetalles(libro)}</p>
 			<button
