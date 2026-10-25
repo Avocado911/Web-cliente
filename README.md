@@ -23,6 +23,7 @@ Web-cliente/
 |---|---|---|
 | [mision-01](arena/mision-01) | El Despertar del DOM: Memoria Arcana | Completado |
 | [mision-02](arena/mision-02) | Async Odyssey: Biblioteca Arcana | Completado |
+| [mision-03](arena/mision-03) | Reactor Core: Biblioteca Arcana en React | Completado |
 
 ## Unidad 1 — Introducción a JavaScript y al cliente web
 
