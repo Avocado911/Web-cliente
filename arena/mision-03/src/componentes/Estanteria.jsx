@@ -8,7 +8,7 @@ export default function Estanteria({ favoritos, onAlternarFavorito, onAbrir }) {
 				{ordenados.length === 0 && <li className="vacio">Aun no has guardado ningun libro.</li>}
 				{ordenados.map((libro) => (
 					<li key={libro.id}>
-						<button type="button" className="abrir-detalle" onClick={() => onAbrir(libro.id)}>{libro.titulo}</button>
+						<button type="button" className="abrir-detalle" onClick={() => onAbrir(libro)}>{libro.titulo}</button>
 						<button
 							type="button"
 							className="quitar-favorito"

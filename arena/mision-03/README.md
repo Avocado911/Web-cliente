@@ -53,7 +53,7 @@ mision-03/
     │   └── useLocalStorage.js   # Bonus: estado persistente
     ├── logica/                  # JavaScript sin React, reutilizado de la M2
     │   ├── api.js               # Peticiones, errores propios y cache
-    │   ├── datos.js             # Funciones puras: normalizar, filtrar, ordenar, estadisticas
+    │   ├── datos.js             # Funciones puras: normalizar, filtrar, ordenar, estadisticas, texto de detalles
     │   └── almacen.js           # localStorage sin romper con datos corruptos
     └── style.css
 ```
@@ -62,11 +62,14 @@ Los componentes solo pintan lo que reciben por props y avisan hacia arriba con c
 
 ## Decisiones tecnicas
 
-- **Estado minimo en `App`:** solo lo que elige el usuario: texto buscado, orden, filtros, favoritos y el id del libro abierto. Los libros visibles, las estadisticas, el conjunto de ids favoritos y el libro abierto se calculan en cada render a partir de eso, asi nunca se desincronizan. No hay `useMemo`: con 40 libros recalcular cuesta menos que razonar sobre la memoizacion.
+- **Estado minimo en `App`:** solo lo que elige el usuario: texto buscado, orden, filtros, favoritos y el libro abierto. Los libros visibles, las estadisticas y el conjunto de ids favoritos se calculan en cada render a partir de eso, asi nunca se desincronizan. No hay `useMemo`: con 40 libros recalcular cuesta menos que razonar sobre la memoizacion.
 - **Cero mutaciones:** los favoritos cambian con `alternarFavorito`, que devuelve un array nuevo, y la forma funcional `setFavoritos((anteriores) => ...)`; los filtros con `{ ...filtros, [nombre]: valor }`; el orden con `toSorted`.
 - **`key` estable:** cada tarjeta usa el id de la obra de OpenLibrary (`/works/OL...W`), nunca el indice, porque el orden y el filtro cambian la posicion de cada libro.
 - **`useEffect` solo para sincronizar con lo de fuera:** la red (busqueda y detalle) y un listener de teclado en `document`. Los tres tienen limpieza: `AbortController.abort()` para las peticiones y `removeEventListener` para el teclado. Lo que se puede calcular durante el render (filtros, orden, estadisticas) no pasa por ningun efecto.
-- **"Cargando" deducido:** el hook de busqueda guarda solo la ultima respuesta con la clave de la peticion que la produjo. Si la clave no coincide con la busqueda actual, se esta cargando. Una respuesta vieja nunca puede pintarse encima de una nueva.
+- **"Cargando" deducido:** el hook de busqueda guarda solo la ultima respuesta junto al texto y el intento de la peticion que la produjo. Si no coinciden con la busqueda actual, se esta cargando. El efecto depende justo de esos dos valores (`[texto, intento]`), sin claves derivadas redundantes. Una respuesta vieja nunca puede pintarse encima de una nueva.
+- **Libro abierto como copia:** `App` guarda el objeto del libro abierto, no solo su id. Con el id habia que buscarlo en resultados y estanteria, y si se quitaba de favoritos sin estar en los resultados la ficha se cerraba sola. Los datos de un libro no cambian, asi que la copia no se desincroniza; lo que si cambia (si esta marcado) se sigue derivando de `favoritos`.
+- **Ficha accesible:** al abrirse lleva el foco al boton de cerrar; Tab y Shift+Tab dan la vuelta dentro de la ficha (trampa de foco) y no se escapan a la pagina de detras; al cerrarse devuelve el foco al elemento que la abrio. Escape y clic en el fondo tambien cierran.
+- **Utilidades fuera de los componentes:** `textoDetalles` vive en `logica/datos.js` y la usan la tarjeta y el detalle; ningun componente importa funciones de un componente hermano.
 - **`useCallback` en `cerrarDetalle`:** el efecto del teclado depende de `onCerrar`; con la misma funcion entre renders el listener no se quita y se vuelve a poner en cada render.
 - **Formulario controlado:** el valor del input vive en el estado de `Buscador`. Solo se avisa a `App` al enviar, para no lanzar una peticion por cada tecla.
 - **Sin `dangerouslySetInnerHTML`:** todo el texto de la API se pinta como texto en JSX, que React escapa.
@@ -88,7 +91,15 @@ Los componentes solo pintan lo que reciben por props y avisan hacia arriba con c
 ### Limitaciones conocidas
 
 - Como en la M2, la API devuelve como maximo 40 resultados y no hay paginacion.
-- Si se abre un libro desde la estanteria y se quita de ella sin que este en los resultados, la ficha se cierra sola: el libro abierto se deduce de las listas y ya no esta en ninguna.
+- Si la ficha se abrio desde la estanteria y el libro se quita de favoritos desde la propia ficha, al cerrarla el boton que la abrio ya no existe y el foco no tiene a donde volver (queda en el documento).
+
+## Cambios tras el feedback
+
+- `textoDetalles` se ha movido de `TarjetaLibro.jsx` a `logica/datos.js`.
+- `useBusquedaLibros` ya no depende de `[texto, clave]` (la clave contenia el texto): la respuesta guarda `texto` e `intento` y el efecto depende de `[texto, intento]`.
+- La ficha tiene trampa de foco y devuelve el foco al elemento que la abrio.
+- El libro abierto se guarda como copia, asi que la ficha ya no se cierra sola al quitarlo de favoritos.
+- `useFetch` generico: se mantiene la decision de la autopsia. Sigue habiendo solo dos peticiones; se extraera si aparece una tercera.
 
 ## Tecnologias
 

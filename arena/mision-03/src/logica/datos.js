@@ -15,6 +15,13 @@ export function normalizarLibro(doc) {
 	};
 }
 
+// Une los datos que existan con " · " y se salta los que faltan (tarjeta y detalle)
+export function textoDetalles(libro) {
+	return [libro.anio ?? "Año desconocido", libro.paginas ? `${libro.paginas} pags.` : null]
+		.filter((dato) => dato !== null)
+		.join(" · ");
+}
+
 export function filtrarLibros(libros, { soloEspanol, soloConPortada }) {
 	return libros
 		.filter((libro) => !soloEspanol || libro.enEspanol)

@@ -8,9 +8,8 @@ export function useBusquedaLibros(texto) {
 	const [intento, setIntento] = useState(0);
 	const [respuesta, setRespuesta] = useState(null);
 
-	// Identifica una peticion concreta: el mismo texto con otro intento es otra peticion
-	const clave = `${texto}#${intento}`;
-
+	// Una peticion la identifican el texto y el intento: el mismo texto con otro intento
+	// es otra peticion. Cada respuesta se guarda junto a los dos para saber de cual es
 	useEffect(() => {
 		if (texto === "") {
 			return;
@@ -20,7 +19,7 @@ export function useBusquedaLibros(texto) {
 		buscarLibros(texto, controlador.signal)
 			.then((docs) => {
 				if (!controlador.signal.aborted) {
-					setRespuesta({ clave, libros: docs.map(normalizarLibro), error: null });
+					setRespuesta({ texto, intento, libros: docs.map(normalizarLibro), error: null });
 				}
 			})
 			.catch((error) => {
@@ -28,17 +27,19 @@ export function useBusquedaLibros(texto) {
 					return;
 				}
 				const mensaje = error instanceof ErrorBiblioteca ? error.message : "Ha ocurrido un error inesperado.";
-				setRespuesta({ clave, libros: [], error: mensaje });
+				setRespuesta({ texto, intento, libros: [], error: mensaje });
 			});
 
 		// Limpieza: si el texto cambia antes de que llegue la respuesta, la peticion vieja se cancela
 		return () => controlador.abort();
-	}, [texto, clave]);
+	}, [texto, intento]);
+
+	const esActual = respuesta?.texto === texto && respuesta?.intento === intento;
 
 	let estado = "listo";
 	if (texto === "") {
 		estado = "inicio";
-	} else if (respuesta?.clave !== clave) {
+	} else if (!esActual) {
 		estado = "cargando";
 	} else if (respuesta.error) {
 		estado = "error";
