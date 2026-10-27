@@ -99,6 +99,7 @@ Los componentes solo pintan lo que reciben por props y avisan hacia arriba con c
 - `useBusquedaLibros` ya no depende de `[texto, clave]` (la clave contenia el texto): la respuesta guarda `texto` e `intento` y el efecto depende de `[texto, intento]`.
 - La ficha tiene trampa de foco y devuelve el foco al elemento que la abrio.
 - El libro abierto se guarda como copia, asi que la ficha ya no se cierra sola al quitarlo de favoritos.
+- Pendiente del feedback de la M2 en `logica/api.js`: `respuesta.json()` ahora esta dentro de un `try/catch` (un cuerpo que no es JSON da un `ErrorBiblioteca`), se comprueba `Array.isArray(datos.docs)` antes de usarlo y la cache leida de `localStorage` se valida y descarta las entradas corruptas.
 - `useFetch` generico: se mantiene la decision de la autopsia. Sigue habiendo solo dos peticiones; se extraera si aparece una tercera.
 
 ## Tecnologias

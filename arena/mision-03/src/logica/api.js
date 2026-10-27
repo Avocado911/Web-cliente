@@ -18,8 +18,23 @@ export class ErrorBiblioteca extends Error {
 	}
 }
 
+// Una entrada de la cache vale si tiene fecha y una lista de docs; lo demas se descarta
+function esEntradaValida(entrada) {
+	return typeof entrada?.fecha === "number" && Array.isArray(entrada.docs);
+}
+
+// Lo guardado en localStorage puede estar corrupto o venir de otra version de la app:
+// se queda solo con las entradas validas
+function cargarCache() {
+	const guardada = leer(CLAVE_CACHE, {});
+	if (typeof guardada !== "object" || guardada === null || Array.isArray(guardada)) {
+		return new Map();
+	}
+	return new Map(Object.entries(guardada).filter(([, entrada]) => esEntradaValida(entrada)));
+}
+
 // La cache vive en un Map en memoria y se copia a localStorage para sobrevivir a recargas
-const cache = new Map(Object.entries(leer(CLAVE_CACHE, {})));
+const cache = cargarCache();
 
 function construirUrl(texto) {
 	const parametros = new URLSearchParams({ q: texto, fields: CAMPOS, limit: LIMITE_RESULTADOS });
@@ -70,7 +85,15 @@ async function pedirJson(url, senalCancelacion) {
 	if (!respuesta.ok) {
 		throw new ErrorBiblioteca(`La biblioteca ha respondido con un error (${respuesta.status}).`, "servidor");
 	}
-	return respuesta.json();
+	// Un 200 con un cuerpo que no es JSON tambien es un error de la biblioteca
+	try {
+		return await respuesta.json();
+	} catch (error) {
+		if (error.name === "AbortError") {
+			throw error;
+		}
+		throw new ErrorBiblioteca("La biblioteca ha enviado una respuesta que no se puede leer.", "formato");
+	}
 }
 
 export async function buscarLibros(texto, senalCancelacion) {
@@ -80,6 +103,10 @@ export async function buscarLibros(texto, senalCancelacion) {
 		return enCache;
 	}
 	const datos = await pedirJson(url, senalCancelacion);
+	// Sin una lista de docs no hay nada que pintar ni que guardar en la cache
+	if (!Array.isArray(datos?.docs)) {
+		throw new ErrorBiblioteca("La biblioteca ha enviado una respuesta inesperada.", "formato");
+	}
 	guardarEnCache(url, datos.docs);
 	return datos.docs;
 }
