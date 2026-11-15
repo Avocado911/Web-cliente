@@ -68,8 +68,8 @@ Enunciados en [ejercicios/tema-02](ejercicios/tema-02). Pendientes.
 
 | Nivel | Ejercicio | Estado |
 |---|---|---|
-| Nivel 1 | [1.1 El podio inmutable](cuaderno/tema-02/nivel-1/1-1-podio-inmutable) | Pendiente |
-| Nivel 1 | [1.2 Desempaquetando la API](cuaderno/tema-02/nivel-1/1-2-desempaquetando-api) | Pendiente |
+| Nivel 1 | [1.1 El podio inmutable](cuaderno/tema-02/nivel-1/1-1-podio-inmutable) | Completado |
+| Nivel 1 | [1.2 Desempaquetando la API](cuaderno/tema-02/nivel-1/1-2-desempaquetando-api) | Completado |
 | Nivel 1 | [1.3 Recuento electoral con Map y Set](cuaderno/tema-02/nivel-1/1-3-recuento-electoral) | Pendiente |
 | Nivel 1 | [1.4 El oráculo del event loop](cuaderno/tema-02/nivel-1/1-4-oraculo-event-loop) | Pendiente |
 | Misión | [1 · Aurora FM](cuaderno/tema-02/misiones/mision-1-aurora-fm) | Pendiente |
