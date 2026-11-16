@@ -2,9 +2,13 @@ import { useSocios } from "../hooks/useSocios.js";
 import { useBajaSocio } from "../hooks/useBajaSocio.js";
 import Aviso from "./Aviso.jsx";
 import TarjetaSocio from "./TarjetaSocio.jsx";
+import RegistrosCorruptos from "./RegistrosCorruptos.jsx";
 
 export default function ListaSocios() {
-	const { data: socios, isPending, isError, error, isFetching, refetch } = useSocios();
+	const { data, isPending, isError, error, isFetching, refetch } = useSocios();
+	// data no existe hasta que llega la primera respuesta
+	const socios = data?.socios;
+	const corruptos = data?.corruptos ?? [];
 	const baja = useBajaSocio();
 	// "variables" es el argumento con el que se llamo a mutate: aqui, el id que se esta borrando
 	const idEnBaja = baja.isPending ? baja.variables : null;
@@ -42,6 +46,7 @@ export default function ListaSocios() {
 			</h2>
 			{baja.isError && <Aviso tipo="error">No se pudo dar de baja al socio. {baja.error.message}</Aviso>}
 			{contenido}
+			<RegistrosCorruptos corruptos={corruptos} onPurgar={baja.mutate} idEnBaja={idEnBaja} />
 		</section>
 	);
 }

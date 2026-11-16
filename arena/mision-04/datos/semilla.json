@@ -28,6 +28,15 @@
       "carne": "archivista",
       "seccion": "cartografia",
       "alta": "2026-11-08T09:12:00.000Z"
+    },
+    {
+      "id": 4,
+      "nombre": "X",
+      "correo": "sin-arroba",
+      "edad": "muchos",
+      "carne": "nigromante",
+      "seccion": "alquimia",
+      "alta": "ayer"
     }
   ]
 }
