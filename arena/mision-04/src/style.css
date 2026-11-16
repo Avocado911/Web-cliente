@@ -174,3 +174,101 @@ h2 {
 	padding: 4px 10px;
 	font-size: 0.85rem;
 }
+
+/* --- Listado y avisos --- */
+
+.listado h2 {
+	color: var(--laton-claro);
+}
+
+.contador {
+	font-weight: normal;
+	color: var(--texto-suave);
+}
+
+.actualizando {
+	font-size: 0.85rem;
+	font-weight: normal;
+	font-style: italic;
+	color: var(--texto-suave);
+}
+
+.aviso {
+	margin: 0 0 14px;
+	padding: 12px 14px;
+	border-left: 4px solid var(--laton);
+	border-radius: 4px;
+	color: var(--texto);
+	background: rgba(0, 0, 0, 0.28);
+}
+
+.aviso[data-tipo="error"] {
+	border-left-color: var(--error);
+	color: var(--error);
+}
+
+.aviso[data-tipo="exito"] {
+	border-left-color: var(--exito);
+	color: var(--exito);
+}
+
+.aviso[data-tipo="cargando"] {
+	font-style: italic;
+}
+
+/* Dentro del pergamino los avisos van con tinta, no con colores claros */
+.formulario .aviso {
+	background: rgba(90, 55, 32, 0.12);
+	color: var(--tinta);
+}
+
+.formulario .aviso[data-tipo="error"] {
+	color: var(--error-tinta);
+	border-left-color: var(--error-tinta);
+}
+
+.formulario .aviso[data-tipo="exito"] {
+	color: #2f5d1c;
+	border-left-color: #2f5d1c;
+}
+
+.lista-socios {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 14px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tarjeta {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 14px;
+	border: 1px solid var(--madera-clara);
+	border-radius: 6px;
+	background: var(--madera-media);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.tarjeta h3 {
+	margin: 0;
+	color: var(--laton-claro);
+}
+
+.tarjeta p {
+	margin: 4px 0 0;
+}
+
+.tarjeta-carne {
+	font-style: italic;
+	color: var(--texto-suave);
+}
+
+.tarjeta-motivo,
+.tarjeta-alta {
+	font-size: 0.9rem;
+	color: var(--texto-suave);
+}

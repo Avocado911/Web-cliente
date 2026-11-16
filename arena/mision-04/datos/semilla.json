@@ -1,0 +1,33 @@
+{
+  "socios": [
+    {
+      "id": 1,
+      "nombre": "Hipatia Valverde",
+      "correo": "hipatia@arcana.example",
+      "edad": 41,
+      "carne": "investigador",
+      "seccion": "alquimia",
+      "motivo": "Tratados de destilación del siglo XVI.",
+      "alta": "2026-09-14T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Bruno Salcedo",
+      "correo": "bruno@arcana.example",
+      "edad": 15,
+      "carne": "lector",
+      "seccion": "bestiarios",
+      "tutor": "Marta Salcedo",
+      "alta": "2026-10-02T17:05:00.000Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Irene Montalbán",
+      "correo": "irene@arcana.example",
+      "edad": 29,
+      "carne": "archivista",
+      "seccion": "cartografia",
+      "alta": "2026-11-08T09:12:00.000Z"
+    }
+  ]
+}
