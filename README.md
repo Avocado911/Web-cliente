@@ -62,7 +62,7 @@ Web-cliente/
 
 ### Ejercicios propuestos (apuntes)
 
-Enunciados en [ejercicios/tema-02](ejercicios/tema-02). Pendientes.
+Enunciados en [ejercicios/tema-02](ejercicios/tema-02). Completados: 1-4 y 8-10. Pendientes: 5-7 y 11-13.
 
 ### Cuaderno 2
 
@@ -71,7 +71,7 @@ Enunciados en [ejercicios/tema-02](ejercicios/tema-02). Pendientes.
 | Nivel 1 | [1.1 El podio inmutable](cuaderno/tema-02/nivel-1/1-1-podio-inmutable) | Completado |
 | Nivel 1 | [1.2 Desempaquetando la API](cuaderno/tema-02/nivel-1/1-2-desempaquetando-api) | Completado |
 | Nivel 1 | [1.3 Recuento electoral con Map y Set](cuaderno/tema-02/nivel-1/1-3-recuento-electoral) | Pendiente |
-| Nivel 1 | [1.4 El oráculo del event loop](cuaderno/tema-02/nivel-1/1-4-oraculo-event-loop) | Pendiente |
+| Nivel 1 | [1.4 El oráculo del event loop](cuaderno/tema-02/nivel-1/1-4-oraculo-event-loop) | Completado |
 | Misión | [1 · Aurora FM](cuaderno/tema-02/misiones/mision-1-aurora-fm) | Pendiente |
 | Misión | [2 · Pokédex de campo](cuaderno/tema-02/misiones/mision-2-pokedex) | Pendiente |
 | Misión | [3 · Operación TypeScript](cuaderno/tema-02/misiones/mision-3-operacion-typescript) | Pendiente |
