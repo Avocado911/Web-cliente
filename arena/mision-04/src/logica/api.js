@@ -23,8 +23,11 @@ async function pedir(ruta, opciones) {
 // Los mas recientes primero. "signal" lo da TanStack Query para poder cancelar la peticion.
 // No se da por bueno lo que llega: cada registro pasa por el esquema Zod con safeParse (no lanza),
 // asi un dato corrupto no tumba el listado entero: se aparta y se ensena el resto.
-export async function obtenerSocios(signal) {
-	const json = await pedir("/socios?_sort=id&_order=desc", { signal });
+// Si llega un tipo de carne, el filtro lo hace el servidor (?carne=lector).
+export async function obtenerSocios({ carne, signal } = {}) {
+	const parametros = new URLSearchParams({ _sort: "id", _order: "desc" });
+	if (carne) parametros.set("carne", carne);
+	const json = await pedir(`/socios?${parametros}`, { signal });
 	if (!Array.isArray(json)) {
 		throw new Error("El archivo de socios devolvió algo que no es una lista.");
 	}
