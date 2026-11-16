@@ -15,6 +15,7 @@ export const SECCIONES = [
 
 export const EDAD_MINIMA = 12;
 export const MAYORIA_EDAD = 18;
+export const MAXIMO_MOTIVO = 200;
 
 // Devuelve el texto visible de un valor ("alquimia" -> "Alquimia"); si no esta, el propio valor
 export function textoDe(lista, valor) {

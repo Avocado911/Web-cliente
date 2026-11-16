@@ -28,7 +28,10 @@ El API responde con 600 ms de retraso (`--delay 600`) para que los estados de ca
 - **Errores accesibles**: cada error sale debajo de su campo con `role="alert"`, el campo lleva `aria-invalid` y `aria-describedby` apunta a su ayuda y a su error; al enviar con fallos, el foco va al primer campo incorrecto.
 - **Error del servidor en su campo**: si el correo ya esta registrado, el error aparece en el campo del correo (con `setError`), no como un aviso generico.
 - **Listado de socios** con `useQuery`: primera carga, error con boton de reintentar, lista vacia, datos y un "actualizando…" cuando refresca en segundo plano.
-- **Alta y baja** con `useMutation`; las dos invalidan el listado. El boton se desactiva mientras se envia y hay aviso de exito y de error.
+- **Filtro por tipo de carne**: lo aplica el servidor y va dentro de la clave de la consulta, asi que cada filtro tiene su propia cache. Al cambiarlo se mantiene la lista anterior hasta que llega la nueva.
+- **Alta y baja** con `useMutation`; las dos invalidan el listado (con cualquier filtro). El boton se desactiva mientras se envia y hay aviso de exito y de error.
+- **Baja con confirmacion**: el primer clic solo pregunta "¿Seguro?"; hay que confirmar o cancelar.
+- **Contador en vivo** de los caracteres del motivo ("37/200"), que avisa al pasarse.
 - **Bonus**: la respuesta del API tambien pasa por Zod con `safeParse`. Los datos de partida traen un registro corrupto (edad `"muchos"`, correo sin arroba, carne inexistente, fecha `"ayer"`): la app lo aparta del listado, ensena por que no vale y deja purgarlo. El resto de socios se ve con normalidad.
 
 ## Estructura
@@ -43,12 +46,13 @@ src/
   componentes/
     FormularioSocio   useForm + zodResolver + mutacion de alta
     Campo             etiqueta + control + ayuda + error, con los atributos ARIA
-    ListaSocios       estados del useQuery y mutacion de baja
-    TarjetaSocio      un socio
+    ListaSocios       filtro, estados del useQuery y mutacion de baja
+    TarjetaSocio      un socio y la confirmacion de su baja
     RegistrosCorruptos  lo que no paso la validacion de la respuesta
     Aviso             mensaje de estado (cargando, error, exito, vacio)
+    ContadorCaracteres  contador en vivo de un campo
   hooks/
-    useSocios         useQuery del listado
+    useSocios         useQuery del listado (con el filtro en la clave)
     useAltaSocio      useMutation del alta + invalidacion
     useBajaSocio      useMutation de la baja + invalidacion
   logica/
@@ -61,10 +65,12 @@ src/
 ## Decisiones tecnicas
 
 - **Un esquema, dos usos.** Los campos del socio se definen una vez (`camposSocio`) y de ahi salen el esquema del formulario (anade la casilla y las reglas cruzadas) y el de la respuesta del API (anade `id` y `alta`). Si manana cambia el maximo del nombre, se cambia en un sitio y vale para lo que entra y para lo que llega.
-- **Formulario no controlado.** Los inputs se registran con `register`: React Hook Form lee el valor del DOM por la `ref` y el componente no se vuelve a pintar en cada tecla. La unica excepcion es la edad, que se observa con `useWatch` porque de ella depende que aparezca el campo del tutor.
+- **Formulario no controlado.** Los inputs se registran con `register`: React Hook Form lee el valor del DOM por la `ref` y el componente no se vuelve a pintar en cada tecla. Solo se observan dos valores con `useWatch`: la edad, porque de ella depende que aparezca el campo del tutor, y el motivo, dentro de `ContadorCaracteres`, para que al teclear se repinte el contador y no el formulario entero.
 - **`mode: "onTouched"`.** No se molesta al usuario con errores mientras escribe por primera vez: el campo se valida al salir de el y, a partir de ahi, en cada cambio, para que vea el error desaparecer al corregirlo.
 - **El esquema tambien limpia.** El `transform` final quita la casilla de normas (no es un dato del socio) y los campos vacios, asi que a `onSubmit` llega exactamente lo que se manda al API.
-- **Claves en un fichero.** `clavesSocios.todas` es `["socios"]` y `clavesSocios.lista()` es `["socios", "lista"]`. Las mutaciones invalidan la general, que alcanza a todas las que empiezan igual; quien pide y quien invalida no pueden escribir la clave distinta por error.
+- **Claves en un fichero y con el filtro dentro.** `clavesSocios.todas` es `["socios"]` y `clavesSocios.lista({ carne })` es `["socios", "lista", { carne }]`. Como el filtro forma parte de la clave, cambiarlo lanza la peticion sin ningun `useEffect` y volver a un filtro ya visto sale de la cache. Las mutaciones invalidan la general, que alcanza a todas las que empiezan igual, sea cual sea el filtro.
+- **Filtrar en el servidor.** El filtro viaja como `?carne=lector` en vez de hacer un `.filter()` sobre lo descargado: es lo que escala si el archivo crece, y `placeholderData: keepPreviousData` evita el parpadeo de "cargando" al cambiar.
+- **Confirmacion de baja como estado local.** Cada tarjeta guarda con `useState` si esta preguntando "¿Seguro?": no le importa a ningun otro componente, asi que no sube a la lista ni a la cache.
 - **La invalidacion se espera.** `onSuccess` devuelve la promesa de `invalidateQueries`, asi la mutacion sigue pendiente hasta que llega el listado nuevo y el aviso de exito aparece a la vez que el socio en la lista.
 - **Capa de servicios.** Los componentes no hacen `fetch`: llaman a hooks, y los hooks a `api.js`. Ahi se comprueba `response.ok` (porque `fetch` no falla con un 404 o un 500) y se traduce el fallo de red a un mensaje entendible.
 - **`safeParse` y no `parse` en el listado.** `parse` lanzaria con el primer registro malo y el usuario se quedaria sin listado por culpa de un solo dato. Con `safeParse` registro a registro se salva lo valido y se informa de lo que no lo es.
@@ -86,8 +92,9 @@ React 19, Vite, React Hook Form, Zod 4, `@hookform/resolvers`, TanStack Query v5
 
 - **Herramienta:** Claude Code (Claude, de Anthropic) en la terminal.
 - **Que partes:** la IA propuso el plan (dominio, estructura, API con `json-server`) y genero el codigo de la app y el borrador de este README. Yo decidi sobre sus propuestas y lo revise.
+- **Decisiones mias sobre la primera version:** despues de probarla pedi anadir el filtro por tipo de carne, la confirmacion antes de dar de baja y el contador en vivo del motivo, y que se viera desde el principio que la edad minima es 12 (la ayuda del campo); decidi mantener la validacion al salir de cada campo en vez de en cada tecla y el retraso de 600 ms del API para que se vean los estados de carga.
 - **Prompts reales:**
   - "Vale, perfecto. Planteame lo de la M4 para empezar a hacerla."
   - "Pero ¿por que se hace en React y no en Next.js? ¿Y que es lo que hay que hacer?" (la respuesta: el enunciado pide una app React con RHF, Zod y TanStack Query, y eso es lo que comprueban los checks).
-- **Como se verifico:** `npm run build` sin errores; el esquema probado con casos validos e invalidos (campos vacios, edad con letras, menor sin tutor, menor con carne de investigador); y una prueba contra el `json-server` real con el mismo codigo de `api.js`: listado con el registro corrupto apartado, alta, intento de alta con el correo repetido y baja. Despues, a mano en el navegador: enviar vacio, corregir campo a campo, alta, correo repetido, baja y API parado.
+- **Como se verifico:** `npm run build` sin errores; el esquema probado con casos validos e invalidos (campos vacios, edad con letras, menor sin tutor, menor con carne de investigador); y una prueba contra el `json-server` real con el mismo codigo de `api.js`: listado con el registro corrupto apartado, alta, intento de alta con el correo repetido y baja. Despues probe la app a mano en el navegador.
 - **Que escribi a mano:** el codigo lo genero la IA. Mi parte fue elegir entre las alternativas, probar la app y estudiar cada fichero hasta poder explicar por que la validacion vive solo en el esquema, que hace cada clave y por que se invalida en vez de tocar la cache.

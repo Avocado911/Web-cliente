@@ -1,10 +1,11 @@
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { esquemaFormulario } from "../logica/esquemas.js";
-import { CARNES, SECCIONES, MAYORIA_EDAD } from "../logica/catalogo.js";
+import { CARNES, SECCIONES, EDAD_MINIMA, MAYORIA_EDAD, MAXIMO_MOTIVO } from "../logica/catalogo.js";
 import { useAltaSocio } from "../hooks/useAltaSocio.js";
 import Campo from "./Campo.jsx";
 import Aviso from "./Aviso.jsx";
+import ContadorCaracteres from "./ContadorCaracteres.jsx";
 
 const VALORES_INICIALES = {
 	nombre: "",
@@ -67,6 +68,7 @@ export default function FormularioSocio() {
 				error={errors.correo} registro={register("correo")} />
 
 			<Campo etiqueta="Edad" nombre="edad" inputMode="numeric"
+				ayuda={`El carné se puede pedir a partir de los ${EDAD_MINIMA} años.`}
 				error={errors.edad} registro={register("edad")} />
 
 			{esMenor && (
@@ -82,7 +84,7 @@ export default function FormularioSocio() {
 				error={errors.seccion} registro={register("seccion")} />
 
 			<Campo etiqueta="¿Qué vienes buscando? (opcional)" nombre="motivo" tipo="textarea"
-				ayuda="Máximo 200 caracteres."
+				ayuda={<ContadorCaracteres control={control} nombre="motivo" maximo={MAXIMO_MOTIVO} />}
 				error={errors.motivo} registro={register("motivo")} />
 
 			<Campo etiqueta="Acepto las normas de la biblioteca" nombre="normas" tipo="checkbox"

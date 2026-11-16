@@ -310,3 +310,43 @@ h2 {
 	font-size: 0.85rem;
 	color: var(--texto-suave);
 }
+
+/* --- Filtro, confirmacion de baja y contador --- */
+
+.filtro {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 14px;
+}
+
+.filtro select {
+	padding: 6px 8px;
+	border: 1px solid var(--madera-clara);
+	border-radius: 4px;
+	font: inherit;
+	color: var(--texto);
+	background: var(--madera-oscura);
+}
+
+.filtro select:focus-visible {
+	outline: 3px solid var(--laton);
+	outline-offset: 2px;
+}
+
+.confirmacion {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+
+.boton-peligro {
+	color: #fff;
+	background: var(--error-tinta);
+}
+
+.contador-caracteres[data-pasado="true"] {
+	font-weight: bold;
+	color: var(--error-tinta);
+}

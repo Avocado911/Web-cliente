@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CARNES, SECCIONES, EDAD_MINIMA, MAYORIA_EDAD } from "./catalogo.js";
+import { CARNES, SECCIONES, EDAD_MINIMA, MAYORIA_EDAD, MAXIMO_MOTIVO } from "./catalogo.js";
 
 const valores = (lista) => lista.map((opcion) => opcion.valor);
 
@@ -22,7 +22,7 @@ const camposSocio = z.object({
 	carne: z.enum(valores(CARNES), { error: "Elige un tipo de carné" }),
 	seccion: z.enum(valores(SECCIONES), { error: "Elige tu sección favorita" }),
 	tutor: z.string().trim().max(40, "El nombre del tutor no puede pasar de 40 letras").optional(),
-	motivo: z.string().trim().max(200, "El motivo no puede pasar de 200 caracteres").optional(),
+	motivo: z.string().trim().max(MAXIMO_MOTIVO, `El motivo no puede pasar de ${MAXIMO_MOTIVO} caracteres`).optional(),
 });
 
 // Esquema del formulario: los campos + la casilla de normas + las reglas que cruzan varios campos
