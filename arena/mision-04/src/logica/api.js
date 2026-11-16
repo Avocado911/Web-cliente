@@ -22,3 +22,33 @@ async function pedir(ruta, opciones) {
 export async function obtenerSocios(signal) {
 	return pedir("/socios?_sort=id&_order=desc", { signal });
 }
+
+// Error que pertenece a un campo concreto del formulario (p. ej. correo repetido):
+// el formulario lo pinta debajo de ese campo en vez de como error general.
+export class ErrorDeCampo extends Error {
+	constructor(campo, mensaje) {
+		super(mensaje);
+		this.campo = campo;
+	}
+}
+
+const CABECERAS_JSON = { "Content-Type": "application/json" };
+
+// Alta de un socio. "datos" llega ya validado y limpio por el esquema del formulario.
+export async function crearSocio(datos) {
+	// json-server no sabe de reglas de negocio: la de "un correo, un socio" se comprueba antes de guardar
+	const repetidos = await pedir(`/socios?correo=${encodeURIComponent(datos.correo)}`);
+	if (repetidos.length > 0) {
+		throw new ErrorDeCampo("correo", "Ya hay un socio con ese correo");
+	}
+	return pedir("/socios", {
+		method: "POST",
+		headers: CABECERAS_JSON,
+		// La fecha de alta la pone la aplicacion, no el usuario
+		body: JSON.stringify({ ...datos, alta: new Date().toISOString() }),
+	});
+}
+
+export async function borrarSocio(id) {
+	return pedir(`/socios/${id}`, { method: "DELETE" });
+}

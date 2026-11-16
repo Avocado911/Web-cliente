@@ -1,9 +1,13 @@
 import { useSocios } from "../hooks/useSocios.js";
+import { useBajaSocio } from "../hooks/useBajaSocio.js";
 import Aviso from "./Aviso.jsx";
 import TarjetaSocio from "./TarjetaSocio.jsx";
 
 export default function ListaSocios() {
 	const { data: socios, isPending, isError, error, isFetching, refetch } = useSocios();
+	const baja = useBajaSocio();
+	// "variables" es el argumento con el que se llamo a mutate: aqui, el id que se esta borrando
+	const idEnBaja = baja.isPending ? baja.variables : null;
 
 	let contenido;
 	if (isPending) {
@@ -21,7 +25,10 @@ export default function ListaSocios() {
 	} else {
 		contenido = (
 			<ul className="lista-socios">
-				{socios.map((socio) => <TarjetaSocio key={socio.id} socio={socio} />)}
+				{socios.map((socio) => (
+					<TarjetaSocio key={socio.id} socio={socio}
+						onBaja={baja.mutate} dandoDeBaja={idEnBaja === socio.id} />
+				))}
 			</ul>
 		);
 	}
@@ -33,6 +40,7 @@ export default function ListaSocios() {
 				{/* isFetching tambien es true en los refrescos en segundo plano, cuando ya hay datos en pantalla */}
 				{isFetching && !isPending && <span className="actualizando" role="status"> actualizando…</span>}
 			</h2>
+			{baja.isError && <Aviso tipo="error">No se pudo dar de baja al socio. {baja.error.message}</Aviso>}
 			{contenido}
 		</section>
 	);

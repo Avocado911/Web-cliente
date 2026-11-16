@@ -9,7 +9,7 @@ export default function App() {
 				<p className="subtitulo">Registro de socios</p>
 			</header>
 			<main className="paneles">
-				<FormularioSocio onAlta={(datos) => console.log("Datos validados:", datos)} />
+				<FormularioSocio />
 				<ListaSocios />
 			</main>
 		</div>

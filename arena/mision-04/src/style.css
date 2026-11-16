@@ -272,3 +272,10 @@ h2 {
 	font-size: 0.9rem;
 	color: var(--texto-suave);
 }
+
+.boton-baja {
+	align-self: flex-start;
+	color: var(--texto);
+	background: var(--madera-oscura);
+	border: 1px solid var(--madera-clara);
+}

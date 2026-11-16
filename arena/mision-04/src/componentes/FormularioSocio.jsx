@@ -2,7 +2,9 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { esquemaFormulario } from "../logica/esquemas.js";
 import { CARNES, SECCIONES, MAYORIA_EDAD } from "../logica/catalogo.js";
+import { useAltaSocio } from "../hooks/useAltaSocio.js";
 import Campo from "./Campo.jsx";
+import Aviso from "./Aviso.jsx";
 
 const VALORES_INICIALES = {
 	nombre: "",
@@ -15,10 +17,12 @@ const VALORES_INICIALES = {
 	normas: false,
 };
 
-export default function FormularioSocio({ onAlta }) {
+export default function FormularioSocio() {
 	const {
 		register,
 		handleSubmit,
+		reset,
+		setError,
 		control,
 		formState: { errors },
 	} = useForm({
@@ -33,10 +37,23 @@ export default function FormularioSocio({ onAlta }) {
 	const edad = useWatch({ control, name: "edad" });
 	const esMenor = edad !== "" && Number(edad) < MAYORIA_EDAD;
 
+	const alta = useAltaSocio();
+
 	// handleSubmit solo llama a esta funcion si el esquema da los datos por buenos (ya limpios)
 	function alEnviar(datos) {
-		onAlta?.(datos);
+		alta.mutate(datos, {
+			// Solo se vacia el formulario si el servidor lo ha guardado: si falla, no se pierde lo escrito
+			onSuccess: () => reset(),
+			onError: (error) => {
+				// Un error del servidor que es de un campo se pinta en ese campo y se le da el foco
+				if (error.campo) {
+					setError(error.campo, { type: "servidor", message: error.message }, { shouldFocus: true });
+				}
+			},
+		});
 	}
+
+	const errorGeneral = alta.isError && !alta.error.campo;
 
 	return (
 		<form className="formulario" onSubmit={handleSubmit(alEnviar)} noValidate>
@@ -71,7 +88,14 @@ export default function FormularioSocio({ onAlta }) {
 			<Campo etiqueta="Acepto las normas de la biblioteca" nombre="normas" tipo="checkbox"
 				error={errors.normas} registro={register("normas")} />
 
-			<button type="submit" className="boton">Solicitar carné</button>
+			<button type="submit" className="boton" disabled={alta.isPending}>
+				{alta.isPending ? "Enviando solicitud…" : "Solicitar carné"}
+			</button>
+
+			{errorGeneral && <Aviso tipo="error">No se pudo tramitar el carné. {alta.error.message}</Aviso>}
+			{alta.isSuccess && (
+				<Aviso tipo="exito">Carné expedido a nombre de {alta.data.nombre}. ¡Bienvenido a la biblioteca!</Aviso>
+			)}
 		</form>
 	);
 }
