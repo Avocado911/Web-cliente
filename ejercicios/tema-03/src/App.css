@@ -1,0 +1,27 @@
+.app {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 2rem;
+  min-height: 100vh;
+  text-align: left;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+  border-right: 1px solid #8884;
+}
+
+nav h1 {
+  font-size: 1.2rem;
+}
+
+nav button.activo {
+  outline: 2px solid currentColor;
+}
+
+main {
+  padding: 1rem;
+}
