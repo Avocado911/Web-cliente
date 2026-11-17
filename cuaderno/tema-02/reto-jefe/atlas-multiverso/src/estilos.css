@@ -1,0 +1,152 @@
+:root {
+	--fondo: #f4f6f2;
+	--tarjeta: #ffffff;
+	--texto: #1d2320;
+	--suave: #5c6660;
+	--acento: #2f9e44;
+	--error: #c92a2a;
+	color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fondo: #121614;
+		--tarjeta: #1d2320;
+		--texto: #e9eee9;
+		--suave: #9aa59e;
+		--acento: #69db7c;
+		--error: #ff8787;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 70rem;
+	padding: 1rem;
+	font-family: system-ui, sans-serif;
+	background: var(--fondo);
+	color: var(--texto);
+}
+
+form {
+	display: flex;
+	gap: 0.5rem;
+}
+
+input,
+button {
+	font: inherit;
+	padding: 0.5rem 0.9rem;
+	border-radius: 0.5rem;
+	border: 1px solid var(--suave);
+}
+
+input {
+	flex: 1;
+	background: var(--tarjeta);
+	color: var(--texto);
+}
+
+button {
+	cursor: pointer;
+	background: var(--acento);
+	color: #fff;
+	border: none;
+}
+
+button:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.oculto {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+}
+
+.mensaje {
+	color: var(--suave);
+}
+
+.mensaje.error {
+	color: var(--error);
+	font-weight: 600;
+}
+
+.rejilla {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+	gap: 1rem;
+}
+
+.tarjeta {
+	position: relative;
+	background: var(--tarjeta);
+	border-radius: 0.75rem;
+	overflow: hidden;
+	box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+}
+
+.tarjeta img {
+	width: 100%;
+	aspect-ratio: 1;
+	display: block;
+}
+
+.tarjeta h3 {
+	font-size: 1rem;
+	margin: 0.6rem 0.75rem 0.2rem;
+}
+
+.estado {
+	margin: 0 0.75rem 0.75rem;
+	font-size: 0.85rem;
+	color: var(--suave);
+}
+
+.estado-alive::before {
+	content: "● ";
+	color: #2f9e44;
+}
+
+.estado-dead::before {
+	content: "● ";
+	color: #e03131;
+}
+
+.estado-unknown::before {
+	content: "● ";
+	color: #868e96;
+}
+
+.estrella {
+	position: absolute;
+	top: 0.4rem;
+	right: 0.4rem;
+	background: rgb(0 0 0 / 0.55);
+	color: #ffd43b;
+	font-size: 1.2rem;
+	padding: 0.2rem 0.5rem;
+}
+
+.paginas {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin: 1.5rem 0;
+}
+
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1rem;
+	margin-top: 1rem;
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Atlas multiverso</title>
+</head>
+
+<body>
+	<header>
+		<h1>Atlas multiverso</h1>
+		<form id="buscador" role="search">
+			<label for="nombre" class="oculto">Nombre del personaje</label>
+			<input id="nombre" name="nombre" type="search" placeholder="rick, morty, summer…" autocomplete="off" required />
+			<button type="submit">Buscar</button>
+		</form>
+		<p id="mensaje" class="mensaje" aria-live="polite"></p>
+	</header>
+
+	<main>
+		<section id="resultados" class="rejilla"></section>
+
+		<nav class="paginas" aria-label="Paginas de resultados">
+			<button id="anterior" type="button" disabled>← Anterior</button>
+			<span id="pagina"></span>
+			<button id="siguiente" type="button" disabled>Siguiente →</button>
+		</nav>
+
+		<button id="ver-stats" type="button">Ver estadisticas</button>
+		<section id="stats" class="stats" hidden></section>
+	</main>
+
+	<script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
