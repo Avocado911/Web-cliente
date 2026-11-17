@@ -1,0 +1,21 @@
+/* tema claro por defecto */
+body {
+	font-family: system-ui, sans-serif;
+	max-width: 40rem;
+	margin: 2rem auto;
+	padding: 0 1rem;
+	background: #f5f5f5;
+	color: #222;
+	transition: background 0.3s, color 0.3s;
+}
+
+/* el tema oscuro solo existe cuando el body tiene la clase dark */
+body.dark {
+	background: #1e1e1e;
+	color: #eee;
+}
+
+button {
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}

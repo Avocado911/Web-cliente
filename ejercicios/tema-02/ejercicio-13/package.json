@@ -1,0 +1,12 @@
+{
+  "name": "ejercicio-13",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node monedero.ts",
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "~7.0.2"
+  }
+}
